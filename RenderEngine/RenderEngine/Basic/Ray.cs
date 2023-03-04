@@ -6,7 +6,7 @@ public readonly struct Ray
 
     public Vector3 Dir { get; init; }
 
-    public Ray(Point3 orig, Vector3 dir)
+    public Ray(Vector3 orig, Vector3 dir)
     {
         Orig = orig;
         Dir = dir;
