@@ -13,7 +13,7 @@ namespace RenderEngine.Shapes
         public Vector3 Orig { get; init; }
         public float Radius{ get; init; }
 
-        public float Intersects(Ray ray)
+        public Vector3? Intersects(Ray ray)
         {
             var k = ray.Orig - Orig;
 
@@ -25,10 +25,17 @@ namespace RenderEngine.Shapes
 
             if (D < 0) 
             {
-                return -1;
+                return null;
             }
 
-            return (float)(-b - Math.Sqrt(D)) / (2 * a);
+            var t = (float)(-b - Math.Sqrt(D)) / (2 * a);
+            
+            if(t < 0)
+            {
+                return null;
+            }
+
+            return ray.Orig + ray.Dir * t;
         }
     }
 }

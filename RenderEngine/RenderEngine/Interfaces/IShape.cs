@@ -4,6 +4,6 @@ namespace RenderEngine.Interfaces
 {
     public interface IShape
     {
-        float Intersects(Ray ray);
+        Vector3? Intersects(Ray ray);
     }
 }
