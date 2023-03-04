@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RenderEngine.Core", "RenderEngine.Core\RenderEngine.Core.csproj", "{F768734E-CC99-4ADF-AA6E-1F62E20BC2DB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RenderEngine", "RenderEngine\RenderEngine.csproj", "{F768734E-CC99-4ADF-AA6E-1F62E20BC2DB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RenderEngine.Tests", "RenderEngine.Tests\RenderEngine.Tests.csproj", "{6D7EBDCD-C47D-42DF-8E73-E3522CE16BCC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RenderEngine.Tests", "RenderEngine.Tests\RenderEngine.Tests.csproj", "{6D7EBDCD-C47D-42DF-8E73-E3522CE16BCC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RenderEngine.Console", "RenderEngine.Console\RenderEngine.Console.csproj", "{4FF77203-DDAA-49C3-ABC2-203BE3B5A769}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RenderEngine.Console", "RenderEngine.Console\RenderEngine.Console.csproj", "{4FF77203-DDAA-49C3-ABC2-203BE3B5A769}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
