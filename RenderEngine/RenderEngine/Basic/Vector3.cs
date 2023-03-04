@@ -51,7 +51,7 @@ public readonly struct Vector3
 
     public static bool operator ==(Vector3 left, Vector3 right)
     {
-        const double tolerance = 1e5;
+        const double tolerance = 1e-5;
         return Math.Abs(left.X - right.X + left.Y - right.Y + left.Z - right.Z) < tolerance;
     }
 
@@ -72,14 +72,14 @@ public readonly struct Vector3
     public static Vector3 Cross(Vector3 left, Vector3 right)
     {
         return new Vector3(
-            left.Y * right.Z - left.Y * right.Z,
+            left.Y * right.Z - left.Z * right.Y,
             left.Z * right.X - left.X * right.Z,
             left.X * right.Y - left.Y * right.X);
     }
 
     public bool Equals(Vector3 vector)
     {
-        return X.Equals(vector.X) && Y.Equals(vector.Y) && Z.Equals(vector.Z);
+        return this == vector;
     }
 
     public override bool Equals(object? obj)

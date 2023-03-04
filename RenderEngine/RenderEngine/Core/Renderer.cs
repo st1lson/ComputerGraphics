@@ -1,9 +1,4 @@
 ﻿using RenderEngine.Basic;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RenderEngine.Core
 {
@@ -11,6 +6,7 @@ namespace RenderEngine.Core
     {
         public Camera Camera { get; init; }
         public Scene Scene { get; init; }
+
         public Renderer(Camera camera, Scene scene)
         {
             Camera = camera;
@@ -21,41 +17,43 @@ namespace RenderEngine.Core
         {
             float[,] screen = new float[Camera.PixelHeight, Camera.PixelWidth];
 
-            var VerticalFOVInRadians = Camera.VerticalFOV * (Math.PI / 180);
+            var verticalFovInRadians = Camera.VerticalFOV * (Math.PI / 180);
             //pixelDensity = pixels / (absolute size)
-            float pixelDensity = (Camera.PixelHeight / 2) / ((float)Math.Tan(VerticalFOVInRadians) * Camera.FocalLength);
+            float pixelDensity = (float)Camera.PixelHeight / 2 /
+                                 ((float)Math.Tan(verticalFovInRadians) * Camera.FocalLength);
 
             Vector3 up = new Vector3(0, 0, 1 / pixelDensity);
             Vector3 right = new Vector3(1 / pixelDensity, 0, 0);
 
-            Vector3 ScreenCenter = Camera.Orig + Camera.Dir * Camera.FocalLength;
-            Vector3 ScreenOrig = ScreenCenter + up * Camera.PixelHeight / 2 - right * Camera.PixelWidth / 2;
+            Vector3 screenCenter = Camera.Orig + Camera.Dir * Camera.FocalLength;
+            Vector3 screenOrig = screenCenter + up * Camera.PixelHeight / 2 - right * Camera.PixelWidth / 2;
 
             for (int i = 0; i < Camera.PixelHeight; i++)
             {
                 for (int j = 0; j < Camera.PixelWidth; j++)
                 {
-                    var screenPoint = ScreenOrig - up * i + right * j;
+                    var screenPoint = screenOrig - up * i + right * j;
                     var screenCameraRay = new Ray(Camera.Orig, screenPoint - Camera.Orig);
                     Vector3? intersectionPoint = null;
                     float minSquareDistance = float.MaxValue;
                     foreach (var shape in Scene.Shapes)
                     {
-                        var intersaction = shape.Intersects(screenCameraRay);
-                        if (intersaction == null) 
+                        var intersection = shape.Intersects(screenCameraRay);
+                        if (intersection == null)
                         {
                             continue;
                         }
 
-                        var squareDist = Vector3.Dot(intersaction.Value - Camera.Orig, intersaction.Value - Camera.Orig);
+                        var squareDist = Vector3.Dot(intersection.Value - Camera.Orig,
+                            intersection.Value - Camera.Orig);
                         if (squareDist < minSquareDistance)
                         {
-                            intersectionPoint = intersaction;
+                            intersectionPoint = intersection;
                             minSquareDistance = squareDist;
                         }
                     }
 
-                    if (intersectionPoint == null) 
+                    if (intersectionPoint == null)
                     {
                         //TODO: something operation with light mb
                         screen[i, j] = 0;
@@ -66,6 +64,7 @@ namespace RenderEngine.Core
                     screen[i, j] = 1;
                 }
             }
+
             return screen;
         }
     }
