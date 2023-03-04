@@ -11,4 +11,9 @@ public readonly struct Ray
         Orig = orig;
         Dir = dir;
     }
+
+    public override string ToString()
+    {
+        return $"Origin: {Orig}; Direction: {Dir}";
+    }
 }

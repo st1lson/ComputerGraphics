@@ -20,6 +20,11 @@ public readonly struct Vector3
         return new Vector3(left.X + right.X, left.Y + right.Y, left.Z + right.Z);
     }
 
+    public static Vector3 operator -(Vector3 vector)
+    {
+        return new Vector3(-vector.X, -vector.Y, -vector.Z);
+    }
+
     public static Vector3 operator -(Vector3 left, Vector3 right)
     {
         return new Vector3(left.X - right.X, left.Y - right.Y, left.Z - right.Z);
@@ -50,5 +55,10 @@ public readonly struct Vector3
             left.Y * right.Z - left.Y * right.Z,
             left.Z * right.X - left.X * right.Z,
             left.X * right.Y - left.Y * right.X);
+    }
+
+    public override string ToString()
+    {
+        return $"X: {X}; Y: {Y}; Z: {Z}";
     }
 }

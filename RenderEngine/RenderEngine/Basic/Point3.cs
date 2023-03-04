@@ -1,18 +1,25 @@
-﻿namespace RenderEngine.Basic;
+﻿using System.Drawing;
+
+namespace RenderEngine.Basic;
 
 public readonly struct Point3
 {
-    public int X { get; init; }
+    public float X { get; init; }
 
-    public int Y { get; init; }
+    public float Y { get; init; }
 
-    public int Z { get; init; }
+    public float Z { get; init; }
 
-    public Point3(int x, int y, int z)
+    public Point3(float x, float y, float z)
     {
         X = x;
         Y = y;
         Z = z;
+    }
+
+    public static Point3 operator +(Point3 left, Vector3 right)
+    {
+        return new Point3(left.X + right.X, left.Y + right.Y, left.Z + right.Z);
     }
 
     public override string ToString()
