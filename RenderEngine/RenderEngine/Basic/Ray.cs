@@ -2,7 +2,7 @@
 
 public readonly struct Ray
 {
-    public Point3 Orig { get; init; }
+    public Vector3 Orig { get; init; }
 
     public Vector3 Dir { get; init; }
 
