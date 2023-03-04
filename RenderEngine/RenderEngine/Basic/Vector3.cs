@@ -7,6 +7,8 @@ public readonly struct Vector3
     public float Y { get; init; }
 
     public float Z { get; init; }
+    
+    internal const double Tolerance = 1e5;
 
     public Vector3(float x, float y, float z)
     {
@@ -40,6 +42,16 @@ public readonly struct Vector3
         return new Vector3(left.X / divider, left.Y / divider, left.Z / divider);
     }
 
+    public static bool operator ==(Vector3 left, Vector3 right)
+    {
+        return Math.Abs(left.X - right.X + left.Y - right.Y + left.Z - right.Z) < Tolerance;
+    }
+
+    public static bool operator !=(Vector3 left, Vector3 right)
+    {
+        return !(left == right);
+    }
+
     public float Abs() => (float)Math.Sqrt(X * X + Y * Y + Z * Z);
 
     public Vector3 Normalize() => this / Abs();
@@ -55,6 +67,21 @@ public readonly struct Vector3
             left.Y * right.Z - left.Y * right.Z,
             left.Z * right.X - left.X * right.Z,
             left.X * right.Y - left.Y * right.X);
+    }
+
+    public bool Equals(Vector3 vector)
+    {
+        return X.Equals(vector.X) && Y.Equals(vector.Y) && Z.Equals(vector.Z);
+    }
+
+    public override bool Equals(object? obj)
+    {
+        return obj is Vector3 other && Equals(other);
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(X, Y, Z);
     }
 
     public override string ToString()
