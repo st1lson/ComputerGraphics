@@ -12,6 +12,11 @@ public readonly struct Ray
         Dir = dir;
     }
 
+    public Vector3 GetPoint(float t) 
+    {
+        return Orig + Dir * t;
+    }
+
     public override string ToString()
     {
         return $"Origin: {Orig}; Direction: {Dir}";
