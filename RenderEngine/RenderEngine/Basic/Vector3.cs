@@ -7,14 +7,21 @@ public readonly struct Vector3
     public float Y { get; init; }
 
     public float Z { get; init; }
-    
-    internal const double Tolerance = 1e5;
+
+    public static readonly Vector3 Zero = new Vector3(0);
 
     public Vector3(float x, float y, float z)
     {
         X = x;
         Y = y;
         Z = z;
+    }
+
+    public Vector3(float value)
+    {
+        X = value;
+        Y = value;
+        Z = value;
     }
 
     public static Vector3 operator +(Vector3 left, Vector3 right)
@@ -44,7 +51,8 @@ public readonly struct Vector3
 
     public static bool operator ==(Vector3 left, Vector3 right)
     {
-        return Math.Abs(left.X - right.X + left.Y - right.Y + left.Z - right.Z) < Tolerance;
+        const double tolerance = 1e5;
+        return Math.Abs(left.X - right.X + left.Y - right.Y + left.Z - right.Z) < tolerance;
     }
 
     public static bool operator !=(Vector3 left, Vector3 right)
