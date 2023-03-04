@@ -22,7 +22,7 @@ jobs:
         dotnet-version: 7.0.x
 
     - name: Install dependencies
-      run: dotnet restore
+      run: dotnet restore RenderEngine
       
     - name: Build
       run: dotnet build RenderEngine --configuration Release --no-restore
