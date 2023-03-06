@@ -45,5 +45,15 @@ namespace RenderEngine.Shapes
 
             return t2 > 0 ? ray.GetPoint(t2) : null;
         }
+
+        public Vector3 GetNormal(Vector3? intersectionPoint)
+        {
+            if(intersectionPoint == null)
+            {
+                return new Vector3(0, 0, 0);
+            }
+
+            return (Vector3)intersectionPoint - Orig;
+        }
     }
 }

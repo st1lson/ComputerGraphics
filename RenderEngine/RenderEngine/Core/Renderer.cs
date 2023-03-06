@@ -51,6 +51,8 @@ namespace RenderEngine.Core
                             intersectionPoint = intersection;
                             minSquareDistance = squareDist;
                         }
+
+                        screen[i, j] = Scene.Lighting.FirstOrDefault().GetLight(shape, intersectionPoint);
                     }
 
                     if (intersectionPoint == null)
@@ -59,9 +61,6 @@ namespace RenderEngine.Core
                         screen[i, j] = 0;
                         continue;
                     }
-
-                    //TODO: something operation with light mb
-                    screen[i, j] = 1;
                 }
             }
 

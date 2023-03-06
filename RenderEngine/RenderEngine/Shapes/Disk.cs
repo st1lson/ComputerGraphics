@@ -27,7 +27,7 @@ namespace RenderEngine.Shapes
             bool isPlaneIntersect = false;
             // plane intersection
             float denom = Vector3.Dot(Normal, ray.Dir);
-            if (denom > tolerance)
+            if (Math.Abs(denom) > tolerance)
             {
                 Vector3 rayOrigDiff = Orig - ray.Orig;
                 t = Vector3.Dot(rayOrigDiff, Normal) / denom;
@@ -45,5 +45,10 @@ namespace RenderEngine.Shapes
 
             return vectorIntersect;
         }
+
+        public Vector3 GetNormal(Vector3? intersectionPoint)
+        {
+            return Normal;
         }
+    }
 }

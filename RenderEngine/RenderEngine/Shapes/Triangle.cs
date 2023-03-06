@@ -18,7 +18,7 @@ namespace RenderEngine.Shapes
         {
             this.v0 = v0;
             this.v1 = v1;
-            this.v1 = v1;
+            this.v2 = v2;
         }
         public Vector3? Intersects(Ray ray)
         {
@@ -59,6 +59,15 @@ namespace RenderEngine.Shapes
             var t = Vector3.Dot(edge2, qvec) * invDet;
 
             return new Vector3((float)t, (float)u, (float)v);
+        }
+
+        public Vector3 GetNormal(Vector3? intersectionPoint)
+        {
+            var edge1 = v1 - v0;
+            var edge2 = v2 - v0;
+
+            var pvec = Vector3.Cross(edge1, edge2);
+            return pvec;
         }
     }
 }
