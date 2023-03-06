@@ -22,6 +22,11 @@ public readonly struct Point3
         return new Point3(left.X + right.X, left.Y + right.Y, left.Z + right.Z);
     }
 
+    public static Point3 operator -(Point3 left, Point3 right)
+    {
+        return new Point3(left.X - right.X, left.Y - right.Y, left.Z - right.Z);
+    }
+
     public override string ToString()
     {
         return $"X: {X}; Y: {Y}; Z: {Z}";
