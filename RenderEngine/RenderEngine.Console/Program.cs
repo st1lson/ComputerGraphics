@@ -2,8 +2,7 @@
 using RenderEngine.Core;
 using RenderEngine.Interfaces;
 using RenderEngine.Shapes;
-using RenderEngine.
-
+using RenderEngine.Lightings;
 internal class Program
 {
     private static void Main(string[] args)
@@ -24,7 +23,7 @@ internal class Program
         };
 
         //TODO: add some lighting
-        List<ILighting> lightings = new List<ILighting>() { new Ligh};
+        List<ILighting> lightings = new List<ILighting>() { new Light(new Vector3(0, -1, 0)) };
 
         Scene scene = new Scene(shapes, lightings);
 

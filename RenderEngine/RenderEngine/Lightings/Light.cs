@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace RenderEngine.Lightings
 {
-    internal class Light : ILighting
+    public class Light : ILighting
     {
         public Vector3 RayLight { get; set; }
         public Light(Vector3 rayLight)
