@@ -9,68 +9,51 @@ namespace RenderEngine.Tests.Shapes
     public class DiskTests
     {
         [Fact]
-        public void Sphere_Intersaction_Correct()
+        public void Disk_Intersaction_Correct()
         {
             // Arrange
-            var sphere = new Sphere(new Vector3(0, 5, 0), 2);
+            var disk = new Disk(new Vector3(4, 4, 0), 2, new Vector3(0, 0, 1));
             var ray = new Ray(
-                    Vector3.Zero,
-                    new Vector3(0, 1.5f, 0.5f)
+                    new Vector3(4, 4, 1),
+                    new Vector3(0, 0, -5)
                 );
 
             // Act
-            var result = sphere.Intersects(ray);
+            var result = disk.Intersects(ray);
 
             // Assert
-            Assert.Equal(new Vector3(0, 3.338105f, 1.1127017f), result);
+            Assert.Equal(new Vector3(4, 4, 0), result);
         }
 
         [Fact]
-        public void Sphere_IntersactionInsideSphere_Correct()
+        public void Disk_Intersaction_On_Border_Correct()
         {
             // Arrange
-            var sphere = new Sphere(new Vector3(0, 5, 0), 2);
+            var disk = new Disk(new Vector3(4, 4, 0), 2, new Vector3(0, 0, 1));
             var ray = new Ray(
-                    new Vector3(0, 5, 0),
-                    new Vector3(0, 1, 0)
+                    new Vector3(2, 4, 1),
+                    new Vector3(0, 0, -5)
                 );
 
             // Act
-            var result = sphere.Intersects(ray);
+            var result = disk.Intersects(ray);
 
             // Assert
-            Assert.Equal(new Vector3(0, 7, 0), result);
+            Assert.Equal(new Vector3(2, 4, 0), result);
         }
 
         [Fact]
-        public void Sphere_NotIntersactsRay()
+        public void Disk_NotIntersactsRay()
         {
             // Arrange
-            var sphere = new Sphere(new Vector3(0, 5, 0), 2);
+            var disk = new Disk(new Vector3(4, 4, 0), 2, new Vector3(0, 0, 1));
             var ray = new Ray(
-                    Vector3.Zero,
-                    new Vector3(0, 0.5f, 15f)
+                    new Vector3(4, 4, 1),
+                    new Vector3(0, 0, 5)
                 );
 
             // Act
-            var result = sphere.Intersects(ray);
-
-            // Assert
-            Assert.Null(result);
-        }
-
-        [Fact]
-        public void Sphere_IntersactsBehindRay()
-        {
-            // Arrange
-            var sphere = new Sphere(new Vector3(0, 5, 0), 2);
-            var ray = new Ray(
-                    new Vector3(0, 8, 0),
-                    new Vector3(0, 1, 0)
-                );
-
-            // Act
-            var result = sphere.Intersects(ray);
+            var result = disk.Intersects(ray);
 
             // Assert
             Assert.Null(result);
