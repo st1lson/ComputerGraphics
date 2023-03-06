@@ -36,7 +36,7 @@ namespace RenderEngine.Shapes
                 return null;
             }
 
-            var invDet = 1d / det;
+            var invDet = 1f / det;
 
             var tvec = ray.Orig - v0;
 
@@ -58,7 +58,12 @@ namespace RenderEngine.Shapes
 
             var t = Vector3.Dot(edge2, qvec) * invDet;
 
-            return new Vector3((float)t, (float)u, (float)v);
+            if(t <= tolerance)
+            {
+                return null;
+            }
+
+            return ray.GetPoint(t);
         }
 
         public Vector3 GetNormal(Vector3? intersectionPoint)
