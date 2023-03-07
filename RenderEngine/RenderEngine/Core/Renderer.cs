@@ -1,4 +1,6 @@
 ﻿using RenderEngine.Basic;
+using RenderEngine.Interfaces;
+using System.Xml.Linq;
 
 namespace RenderEngine.Core
 {
@@ -36,6 +38,7 @@ namespace RenderEngine.Core
                     var screenCameraRay = new Ray(Camera.Orig, screenPoint - Camera.Orig);
                     Vector3? intersectionPoint = null;
                     float minSquareDistance = float.MaxValue;
+                    IShape saveShape = null;
                     foreach (var shape in Scene.Shapes)
                     {
                         var intersection = shape.Intersects(screenCameraRay);
@@ -50,9 +53,8 @@ namespace RenderEngine.Core
                         {
                             intersectionPoint = intersection;
                             minSquareDistance = squareDist;
+                            saveShape = shape;
                         }
-
-                        screen[i, j] = Scene.Lighting.FirstOrDefault().GetLight(shape, intersectionPoint);
                     }
 
                     if (intersectionPoint == null)
@@ -61,6 +63,11 @@ namespace RenderEngine.Core
                         screen[i, j] = 0;
                         continue;
                     }
+
+                    if (Scene.Lighting.Count == 0)
+                        continue;
+
+                    screen[i, j] = Scene.Lighting.First().GetLight(saveShape, intersectionPoint);
                 }
             }
 

@@ -50,7 +50,7 @@ namespace RenderEngine.Shapes
         {
             if(intersectionPoint == null)
             {
-                return new Vector3(0, 0, 0);
+                return Vector3.Zero;
             }
 
             return (Vector3)intersectionPoint - Orig;

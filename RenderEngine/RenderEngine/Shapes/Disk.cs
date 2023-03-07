@@ -40,10 +40,8 @@ namespace RenderEngine.Shapes
             Vector3 vectorIntersect = ray.GetPoint(t);
             Vector3 distance = vectorIntersect - Orig;
             float distanceValue = Vector3.Dot(distance, distance);
-            if(distanceValue > Radius * Radius)
-                return null;
 
-            return vectorIntersect;
+            return distanceValue <= Radius * Radius ? vectorIntersect : null;
         }
 
         public Vector3 GetNormal(Vector3? intersectionPoint)

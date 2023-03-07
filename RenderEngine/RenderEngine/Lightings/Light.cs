@@ -19,8 +19,7 @@ namespace RenderEngine.Lightings
         public float GetLight(IShape shape, Vector3? intersectionPoint)
         {
             Vector3 normal = shape.GetNormal(intersectionPoint);
-            float cos = Vector3.Dot(normal, RayLight);
-            return cos;
+            return Vector3.Dot(normal, RayLight);
         }
     }
 }
