@@ -1,6 +1,4 @@
-﻿using System.Drawing;
-
-namespace RenderEngine.Basic;
+﻿namespace RenderEngine.Basic;
 
 public readonly struct Point3
 {
