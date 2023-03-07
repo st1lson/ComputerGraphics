@@ -19,12 +19,15 @@ namespace RenderEngine.Core
             float[,] screen = new float[Camera.PixelHeight, Camera.PixelWidth];
 
             var verticalFovInRadians = Camera.VerticalFOV * (Math.PI / 180);
-            //pixelDensity = pixels / (absolute size)
+            //pixelDensity = pixels / absolute size
             float pixelDensity = (float)Camera.PixelHeight / 2 /
                                  ((float)Math.Tan(verticalFovInRadians) * Camera.FocalLength);
+            
+            //Orientation of the screen
+            Vector3 defaultUp = new Vector3(0, 0, 1);
 
-            Vector3 up = new Vector3(0, 0, 1 / pixelDensity);
-            Vector3 right = new Vector3(1 / pixelDensity, 0, 0);
+            Vector3 right = Vector3.Cross(Camera.Dir, defaultUp).Normalize() / pixelDensity;
+            Vector3 up = Vector3.Cross(right, Camera.Dir).Normalize() / pixelDensity;
 
             Vector3 screenCenter = Camera.Orig + Camera.Dir * Camera.FocalLength;
             Vector3 screenOrig = screenCenter + up * Camera.PixelHeight / 2 - right * Camera.PixelWidth / 2;
