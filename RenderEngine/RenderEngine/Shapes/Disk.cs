@@ -1,25 +1,10 @@
 ﻿using RenderEngine.Interfaces;
 using RenderEngine.Basic;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RenderEngine.Shapes
 {
-    public record Disk : IShape
+    public record Disk(Vector3 Orig, float Radius, Vector3 Normal) : IShape
     {
-        public Vector3 Orig { get; init; }
-        public float Radius { get; init; }
-        public Vector3 Normal { get; init; }
-
-        public Disk(Vector3 orig, float radius, Vector3 normal)
-        {
-            Orig = orig;
-            Radius = radius;
-            Normal = normal;
-        }
         public Vector3? Intersects(Ray ray)
         {
             const float tolerance = 1e-6f;
@@ -44,7 +29,7 @@ namespace RenderEngine.Shapes
             return distanceValue <= Radius * Radius ? vectorIntersect : null;
         }
 
-        public Vector3 GetNormal(Vector3? intersectionPoint)
+        public Vector3 GetNormal(Vector3 intersectionPoint)
         {
             return Normal;
         }

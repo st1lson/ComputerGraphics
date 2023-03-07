@@ -1,24 +1,10 @@
 ﻿using RenderEngine.Basic;
 using RenderEngine.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RenderEngine.Shapes
 {
-    public record Sphere : IShape
+    public record Sphere(Vector3 Orig, float Radius) : IShape
     {
-        public Vector3 Orig { get; init; }
-        public float Radius{ get; init; }
-
-        public Sphere(Vector3 orig, float radius)
-        {
-            Orig = orig;
-            Radius = radius;
-        }
-
         public Vector3? Intersects(Ray ray)
         {
             var k = ray.Orig - Orig;
@@ -46,14 +32,9 @@ namespace RenderEngine.Shapes
             return t2 > 0 ? ray.GetPoint(t2) : null;
         }
 
-        public Vector3 GetNormal(Vector3? intersectionPoint)
+        public Vector3 GetNormal(Vector3 intersectionPoint)
         {
-            if(intersectionPoint == null)
-            {
-                return Vector3.Zero;
-            }
-
-            return (Vector3)intersectionPoint - Orig;
+            return intersectionPoint - Orig;
         }
     }
 }

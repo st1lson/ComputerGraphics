@@ -23,7 +23,7 @@ internal class Program
         };
 
         //TODO: add some lighting
-        List<ILighting> lightings = new List<ILighting>() { new Light(new Vector3(0, -1, 0)) };
+        List<ILighting> lightings = new List<ILighting>() { new DirectionalLight(new Vector3(0, -1, 0)) };
 
         Scene scene = new Scene(shapes, lightings);
 

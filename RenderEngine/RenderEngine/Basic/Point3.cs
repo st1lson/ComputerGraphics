@@ -1,6 +1,4 @@
-﻿using System.Drawing;
-
-namespace RenderEngine.Basic;
+﻿namespace RenderEngine.Basic;
 
 public readonly struct Point3
 {
@@ -20,11 +18,6 @@ public readonly struct Point3
     public static Point3 operator +(Point3 left, Vector3 right)
     {
         return new Point3(left.X + right.X, left.Y + right.Y, left.Z + right.Z);
-    }
-
-    public static Point3 operator -(Point3 left, Point3 right)
-    {
-        return new Point3(left.X - right.X, left.Y - right.Y, left.Z - right.Z);
     }
 
     public override string ToString()
