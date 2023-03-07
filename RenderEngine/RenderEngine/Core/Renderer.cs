@@ -58,7 +58,6 @@ namespace RenderEngine.Core
 
                     if (intersectionPoint == null)
                     {
-                        //TODO: something operation with light mb
                         screen[i, j] = 0;
                         continue;
                     }
@@ -66,7 +65,8 @@ namespace RenderEngine.Core
                     if (Scene.Lighting.Count == 0)
                         continue;
 
-                    screen[i, j] = Scene.Lighting.First().GetLight(saveShape, intersectionPoint.Value);
+                    screen[i, j] = Scene.Lighting.First().GetLight(saveShape!, intersectionPoint.Value);
+
                 }
             }
 
