@@ -1,20 +1,23 @@
 ﻿using RenderEngine.Basic;
 using RenderEngine.Core;
 using RenderEngine.Interfaces;
-using RenderEngine.Shapes;
 using RenderEngine.Lightings;
+using RenderEngine.Shapes;
+
+namespace RenderEngine.Console;
+
 internal class Program
 {
     private static void Main(string[] args)
     {
         Camera camera = new Camera(
-                Vector3.Zero,
-                new Vector3(0, 1, 0),
-                200,
-                200,
-                1,
-                30
-            );
+            Vector3.Zero,
+            new Vector3(0, 1, 0),
+            200,
+            200,
+            1,
+            30
+        );
 
         List<IShape> shapes = new List<IShape>() {
             new Sphere(new Vector3(0, 5, -1.5f), 1),
@@ -34,26 +37,27 @@ internal class Program
             {
                 if (image[i, j] <= 0)
                 {
-                    Console.Write(" ");
+                    System.Console.Write(" ");
                 }
                 else if (image[i, j] <= 0.2 && image[i, j] > 0)
                 {
-                    Console.Write(".");
+                    System.Console.Write(".");
                 }
                 else if (image[i, j] <= 0.5 && image[i, j] > 0.2)
                 {
-                    Console.Write("*");
+                    System.Console.Write("*");
                 }
                 else if (image[i, j] <= 0.8 && image[i, j] > 0.5)
                 {
-                    Console.Write("O");
+                    System.Console.Write("O");
                 }
                 else
-                { 
-                    Console.Write("#");
+                {
+                    System.Console.Write("#");
                 }
             }
-            Console.WriteLine();
+
+            System.Console.WriteLine();
         }
     }
 }

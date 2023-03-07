@@ -1,10 +1,10 @@
 ﻿using RenderEngine.Basic;
 
-namespace RenderEngine.Interfaces
+namespace RenderEngine.Interfaces;
+
+public interface IShape
 {
-    public interface IShape
-    {
-        Vector3? Intersects(Ray ray);
-        Vector3 GetNormal(Vector3 intersectionPoint);
-    }
+    Vector3? Intersects(Ray ray);
+
+    Vector3 GetNormal(Vector3 intersectionPoint);
 }
