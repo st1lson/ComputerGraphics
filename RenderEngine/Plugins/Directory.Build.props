@@ -1,5 +1,8 @@
 <Project>
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="xcopy /y &quot;$(OutDir)$(ProjectName).dll&quot; &quot;$(SolutionDir)Plugins/&quot;" />
+    <Copy 
+      SourceFiles="$(OutDir)$(ProjectName).dll" 
+      DestinationFolder="$(SolutionDir)Plugins/" 
+      SkipUnchangedFiles="true" />
   </Target>
 </Project>
