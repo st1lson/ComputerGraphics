@@ -134,3 +134,12 @@ dotnet_naming_style.pascal_case.capitalization = pascal_case
 
 # IDE0048: Add parentheses for clarity
 dotnet_style_parentheses_in_arithmetic_binary_operators = never_if_unnecessary
+
+# Default severity for analyzer diagnostics with category 'Style'
+dotnet_analyzer_diagnostic.category-Style.severity = none
+
+# Default severity for analyzer diagnostics with category 'StyleCop.CSharp.ReadabilityRules'
+dotnet_analyzer_diagnostic.category-StyleCop.CSharp.ReadabilityRules.severity = none
+
+# Default severity for analyzer diagnostics with category 'StyleCop.CSharp.SpacingRules'
+dotnet_analyzer_diagnostic.category-StyleCop.CSharp.SpacingRules.severity = none
