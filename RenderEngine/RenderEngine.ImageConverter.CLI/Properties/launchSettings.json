@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "RenderEngine.ImageConverter.CLI": {
+      "commandName": "Project",
+      "commandLineArgs": "-s \"D:\\VS Projects\\BmpReader\\Data\\bmp.bmp\" -d \"M:\\study\\ComputerGraphics\\bmp.png\""
+    }
+  }
+}

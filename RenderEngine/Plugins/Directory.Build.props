@@ -1,0 +1,8 @@
+<Project>
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Copy 
+      SourceFiles="$(OutDir)$(ProjectName).dll" 
+      DestinationFolder="$(SolutionDir)Plugins/" 
+      SkipUnchangedFiles="true" />
+  </Target>
+</Project>
