@@ -67,6 +67,9 @@ public sealed class PluginFactory
 
         foreach (var pluginAssembly in _pluginAssemblies)
         {
+            if (!pluginAssembly.FullName!.StartsWith(format.ToString()))
+                continue;
+
             foreach (var type in pluginAssembly.GetTypes())
             {
                 if (!typeof(IImageWriter).IsAssignableFrom(type)) continue;
