@@ -17,7 +17,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RenderEngine.ImageConverter", "RenderEngine.ImageConverter\RenderEngine.ImageConverter.csproj", "{D3E753FA-6626-469A-BB16-345000941A66}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RenderEngine.ImageConverter", "RenderEngine.ImageConverter\RenderEngine.ImageConverter.csproj", "{D3E753FA-6626-469A-BB16-345000941A66}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugins", "Plugins", "{25E7F207-F6E9-4AAD-8250-81429B968A77}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Readers", "Readers", "{0E330DA7-245A-4A9C-8616-4EF6884F7554}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Writers", "Writers", "{8D15C085-C5D3-4BDE-A217-45BBFADAAC67}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BMPReader", "BMPReader\BMPReader.csproj", "{13B6B623-E91C-40EC-8B4D-B8339D1CFACA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,9 +49,18 @@ Global
 		{D3E753FA-6626-469A-BB16-345000941A66}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D3E753FA-6626-469A-BB16-345000941A66}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D3E753FA-6626-469A-BB16-345000941A66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13B6B623-E91C-40EC-8B4D-B8339D1CFACA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13B6B623-E91C-40EC-8B4D-B8339D1CFACA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13B6B623-E91C-40EC-8B4D-B8339D1CFACA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13B6B623-E91C-40EC-8B4D-B8339D1CFACA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0E330DA7-245A-4A9C-8616-4EF6884F7554} = {25E7F207-F6E9-4AAD-8250-81429B968A77}
+		{8D15C085-C5D3-4BDE-A217-45BBFADAAC67} = {25E7F207-F6E9-4AAD-8250-81429B968A77}
+		{13B6B623-E91C-40EC-8B4D-B8339D1CFACA} = {0E330DA7-245A-4A9C-8616-4EF6884F7554}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1A747DD2-232F-4C37-B010-6BBD66890D71}
