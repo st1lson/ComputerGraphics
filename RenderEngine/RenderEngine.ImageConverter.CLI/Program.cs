@@ -12,3 +12,7 @@ var pluginFactory = new PluginFactory();
 var reader = pluginFactory.GetImageReader(result.SourceFormat);
 
 var bitmap = reader.Read(result.SourceFile);
+
+var writer = pluginFactory.GetImageWriter(result.OutputFormat);
+
+writer.Write(bitmap, result.OutputFile);

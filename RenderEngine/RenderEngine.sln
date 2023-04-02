@@ -20,6 +20,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RenderEngine.ImageConverter", "RenderEngine.ImageConverter\RenderEngine.ImageConverter.csproj", "{D3E753FA-6626-469A-BB16-345000941A66}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugins", "Plugins", "{25E7F207-F6E9-4AAD-8250-81429B968A77}"
+	ProjectSection(SolutionItems) = preProject
+		Plugins\Directory.Build.props = Plugins\Directory.Build.props
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Readers", "Readers", "{0E330DA7-245A-4A9C-8616-4EF6884F7554}"
 EndProject
@@ -28,6 +31,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BmpReader", "Plugins\Readers\BmpReader\BmpReader.csproj", "{13B6B623-E91C-40EC-8B4D-B8339D1CFACA}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RenderEngine.ImageConverter.CLI", "RenderEngine.ImageConverter.CLI\RenderEngine.ImageConverter.CLI.csproj", "{55E97872-EF07-4EF2-AD2B-A086933FD9E1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BmpWriter", "Plugins\Writers\BmpWriter\BmpWriter.csproj", "{D323C744-02F3-4272-AA70-7DD270004E49}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,6 +64,10 @@ Global
 		{55E97872-EF07-4EF2-AD2B-A086933FD9E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{55E97872-EF07-4EF2-AD2B-A086933FD9E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{55E97872-EF07-4EF2-AD2B-A086933FD9E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D323C744-02F3-4272-AA70-7DD270004E49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D323C744-02F3-4272-AA70-7DD270004E49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D323C744-02F3-4272-AA70-7DD270004E49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D323C744-02F3-4272-AA70-7DD270004E49}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,6 +76,7 @@ Global
 		{0E330DA7-245A-4A9C-8616-4EF6884F7554} = {25E7F207-F6E9-4AAD-8250-81429B968A77}
 		{8D15C085-C5D3-4BDE-A217-45BBFADAAC67} = {25E7F207-F6E9-4AAD-8250-81429B968A77}
 		{13B6B623-E91C-40EC-8B4D-B8339D1CFACA} = {0E330DA7-245A-4A9C-8616-4EF6884F7554}
+		{D323C744-02F3-4272-AA70-7DD270004E49} = {8D15C085-C5D3-4BDE-A217-45BBFADAAC67}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1A747DD2-232F-4C37-B010-6BBD66890D71}
