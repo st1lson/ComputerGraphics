@@ -7,7 +7,7 @@ namespace RenderEngine.ImageConverter.Factories;
 
 public sealed class PluginFactory
 {
-    private const string DefaultPluginsDirectory = "";
+    private const string DefaultPluginsDirectory = @"../../../../Plugins";
     private const string PluginExtension = ".dll";
     private const string PluginSearchPattern = $"*{PluginExtension}";
 

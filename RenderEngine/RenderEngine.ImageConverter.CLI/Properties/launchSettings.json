@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "RenderEngine.ImageConverter.CLI": {
+      "commandName": "Project",
+      "commandLineArgs": "-s \"M:\\study\\ComputerGraphics\\bmp.bmp\" -d \"M:\\study\\ComputerGraphics\\bmp.png\""
+    }
+  }
+}
