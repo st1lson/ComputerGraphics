@@ -24,11 +24,6 @@ public sealed class PluginFactory
 
         var directoryInfo = new DirectoryInfo(PluginsPath);
 
-        var k = Directory.GetFiles(
-                directoryInfo.FullName,
-                PluginSearchPattern,
-                SearchOption.AllDirectories);
-
         _pluginAssemblies = Directory.GetFiles(
                 directoryInfo.FullName,
                 PluginSearchPattern,
