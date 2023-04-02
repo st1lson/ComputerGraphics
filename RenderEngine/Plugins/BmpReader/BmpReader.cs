@@ -1,16 +1,18 @@
 ﻿using RenderEngine.ImageConverter.Interfaces;
+using RenderEngine.ImageConverter.Models;
+using RenderEngine.ImageConverter.Models.Bmp;
 
 namespace BmpReader
 {
-    public class BMPFile : IImageReader
+    public class BmpReader : IImageReader
     {
-        public BMPHeader Header { get; }
-        public Bitmap Bitmap { get; }
-        public BMPFile(string filePath)
+        public BmpHeader Header { get; private set; }
+
+        public Bitmap Read(string filePath)
         {
             using BinaryReader reader = new BinaryReader(File.Open(filePath, FileMode.Open));
 
-            Header = new BMPHeader()
+            Header = new BmpHeader
             {
                 Signature = reader.ReadUInt16(),
                 FileSize = reader.ReadUInt32(),
@@ -33,16 +35,18 @@ namespace BmpReader
             int colorTableSize = (int)(Header.DataOffset + (Header.BitsPerPixel <= 8 ? (1 << Header.BitsPerPixel) * 4 : 0) - 54);
             reader.ReadBytes(colorTableSize);
 
-            Bitmap = new Bitmap(Header.Height, Header.Width);
+            var bitmap = new Bitmap(Header.Height, Header.Width);
 
             for (uint y = 0; y < Header.Height; y++)
             {
                 for (uint x = 0; x < Header.Width; x++)
                 {
-                    Bitmap[y, x] = new Pixel(reader.ReadByte(), reader.ReadByte(), reader.ReadByte());
+                    bitmap[y, x] = new Pixel(reader.ReadByte(), reader.ReadByte(), reader.ReadByte());
                 }
                 reader.ReadBytes(rowPadding);
             }
+
+            return bitmap;
         }
     }
 }

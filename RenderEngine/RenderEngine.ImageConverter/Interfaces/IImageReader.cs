@@ -1,5 +1,8 @@
-﻿namespace RenderEngine.ImageConverter.Interfaces;
+﻿using RenderEngine.ImageConverter.Models;
+
+namespace RenderEngine.ImageConverter.Interfaces;
 
 public interface IImageReader : IPlugin
 {
+    Bitmap Read(string path);
 }
