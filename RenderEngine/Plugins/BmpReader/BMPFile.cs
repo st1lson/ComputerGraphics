@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.PortableExecutable;
-using System.Text;
-using System.Threading.Tasks;
+﻿using RenderEngine.ImageConverter.Interfaces;
 
 namespace BmpReader
 {
-    public class BMPFile
+    public class BMPFile : IImageReader
     {
         public BMPHeader Header { get; }
         public Bitmap Bitmap { get; }

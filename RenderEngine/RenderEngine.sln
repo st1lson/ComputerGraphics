@@ -25,7 +25,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Readers", "Readers", "{0E33
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Writers", "Writers", "{8D15C085-C5D3-4BDE-A217-45BBFADAAC67}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BMPReader", "BMPReader\BMPReader.csproj", "{13B6B623-E91C-40EC-8B4D-B8339D1CFACA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BmpReader", "Plugins\BmpReader\BmpReader.csproj", "{13B6B623-E91C-40EC-8B4D-B8339D1CFACA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
