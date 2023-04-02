@@ -1,5 +1,5 @@
 <Project>
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="xcopy /y &quot;$(OutDir)$(ProjectName).dll&quot; &quot;$(SolutionDir)Plugins\&quot;" />
+    <Exec Command="xcopy /y &quot;$(OutDir)$(ProjectName).dll&quot; &quot;$(SolutionDir)Plugins/&quot;" />
   </Target>
 </Project>
