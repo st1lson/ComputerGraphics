@@ -36,7 +36,7 @@ public sealed class PluginFactory
     public IImageReader GetImageReader(ImageFormat format)
     {
         if (format == ImageFormat.Unknown)
-            throw new ArgumentException("Failed to find a suitable reader plugin");
+            throw new ReaderNotFoundException();
 
         foreach (var pluginAssembly in _pluginAssemblies)
         {
