@@ -17,6 +17,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RenderEngine.ImageConverter", "RenderEngine.ImageConverter\RenderEngine.ImageConverter.csproj", "{D3E753FA-6626-469A-BB16-345000941A66}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{4FF77203-DDAA-49C3-ABC2-203BE3B5A769}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4FF77203-DDAA-49C3-ABC2-203BE3B5A769}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4FF77203-DDAA-49C3-ABC2-203BE3B5A769}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3E753FA-6626-469A-BB16-345000941A66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3E753FA-6626-469A-BB16-345000941A66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3E753FA-6626-469A-BB16-345000941A66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3E753FA-6626-469A-BB16-345000941A66}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
