@@ -24,10 +24,15 @@ public sealed class PluginFactory
 
         var directoryInfo = new DirectoryInfo(PluginsPath);
 
+        var k = Directory.GetFiles(
+                directoryInfo.FullName,
+                PluginSearchPattern,
+                SearchOption.AllDirectories);
+
         _pluginAssemblies = Directory.GetFiles(
                 directoryInfo.FullName,
                 PluginSearchPattern,
-                SearchOption.AllDirectories)
+                SearchOption.TopDirectoryOnly)
             .Where(plugin => (plugin.EndsWith(AddExtension(WriterKey)) || plugin.EndsWith(AddExtension(ReaderKey))))
             .Select(Assembly.LoadFrom)
             .ToList();
