@@ -5,12 +5,12 @@ namespace RenderEngine.ImageConverter.CLI.Models;
 
 public class CommandLineArgs
 {
-    [Option('s', Required = true, HelpText = "Set source file to convert")]
+    [Option('s', "source", Required = true, HelpText = "Set source file to convert")]
     public string SourceFile { get; set; } = null!;
 
     public ImageFormat SourceFormat => StringToEnum(Path.GetExtension(SourceFile));
 
-    [Option('d', Required = true, HelpText = "Set destination file")]
+    [Option('d', "destination", Required = true, HelpText = "Set destination file")]
     public string OutputFile { get; set; } = null!;
 
     public ImageFormat OutputFormat => StringToEnum(Path.GetExtension(OutputFile));
