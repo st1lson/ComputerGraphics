@@ -2,7 +2,8 @@
 
 public struct PngHeader
 {
-    public ulong Signature { get => BitConverter.ToUInt64(new byte[] { 137, 80, 78, 71, 13, 10, 26, 10 }, 0);}
+    //public ulong Signature { get => BitConverter.ToUInt64(new byte[] { 137, 80, 78, 71, 13, 10, 26, 10 }, 0);}
+    public ulong Signature { get; init; }
     //IHDR chunk
     public uint Width { get; init; }
     public uint Height { get; init; }

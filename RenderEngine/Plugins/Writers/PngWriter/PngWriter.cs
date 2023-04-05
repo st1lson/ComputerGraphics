@@ -1,20 +1,18 @@
 ﻿using RenderEngine.ImageConverter.Interfaces;
 using RenderEngine.ImageConverter.Models;
-using RenderEngine.ImageConverter.Models.Bmp;
+using RenderEngine.ImageConverter.Models.Png;
 using System.IO;
 using System.Reflection.PortableExecutable;
 
-namespace BmpWriter
+namespace PngWriter
 {
-    public class BmpReader : IImageWriter
+    public class PngWriter : IImageWriter
     {
         public void Write(Bitmap bitmap, string path)
         {
-            uint rowPadding = 3 - (bitmap.Width * 3 - 1) % 4;
-            uint imageSize = bitmap.Width * bitmap.Height * 3 + rowPadding * bitmap.Height;
-            uint fileSize = imageSize + 54;
+            var pngData = 
 
-            var header = new BmpHeader()
+            var header = new PngHeader()
             {
                 Signature = 0x4D42,
                 Reserved = 0,
