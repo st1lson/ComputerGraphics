@@ -11,8 +11,8 @@ public sealed class PluginFactory
     private const string PluginExtension = ".dll";
     private const string PluginSearchPattern = $"*{PluginExtension}";
 
-    private const string WriterKey = "Writer";
-    private const string ReaderKey = "Reader";
+    private const string WriterKey = "Writers";
+    private const string ReaderKey = "Readers";
 
     public string PluginsPath { get; }
 
@@ -24,10 +24,12 @@ public sealed class PluginFactory
 
         var directoryInfo = new DirectoryInfo(PluginsPath);
 
-        _pluginAssemblies = Directory.GetFiles(
+        var a = Directory.GetFiles(
                 directoryInfo.FullName,
                 PluginSearchPattern,
-                SearchOption.TopDirectoryOnly)
+                SearchOption.TopDirectoryOnly);
+
+        _pluginAssemblies = a
             .Where(plugin => (plugin.EndsWith(AddExtension(WriterKey)) || plugin.EndsWith(AddExtension(ReaderKey))))
             .Select(Assembly.LoadFrom)
             .ToList();
