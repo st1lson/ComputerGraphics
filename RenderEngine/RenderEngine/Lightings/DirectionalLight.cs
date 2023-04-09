@@ -33,19 +33,12 @@ public class DirectionalLight : ILighting
             }
 
             var intersection = otherShapes.Intersects(rayLight);
-            if (intersectionPoint.X > 2 && intersectionPoint.Z < 1 && intersectionPoint.Z > -1)
-            {
-                int k = 0;
-                k = 1;
-            }
             if (intersection != null) 
             {
                 isShadowed = true;
                 break;
             }
         }
-
-
 
         return isShadowed ? 0 : Vector3.Dot(normal, LightDir);
     }
