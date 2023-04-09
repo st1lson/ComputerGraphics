@@ -11,10 +11,10 @@ namespace PngWriter
 {
     public class PngWriter : IImageWriter
     {
+        const string NameOfChunkIhdr = "IHDR";
+        const string NameOfChunkIdat = "IDAT";
         public void Write(Bitmap bitmap, string path)
         {
-
-
             IHDRData ihdrData = new()
             {
                 Width = BitConverter.GetBytes(bitmap.Width).Reverse().ToArray(),
@@ -32,9 +32,9 @@ namespace PngWriter
                 IHDR = new()
                 {
                     ChunkLength = BitConverter.GetBytes(13).Reverse().ToArray(),
-                    ChunkName = Encoding.ASCII.GetBytes("IHDR"),
+                    ChunkName = Encoding.ASCII.GetBytes(NameOfChunkIhdr),
                     IHDRData = ihdrData,
-                    CRC = GetCRC32(Encoding.ASCII.GetBytes("IHDR")
+                    CRC = GetCRC32(Encoding.ASCII.GetBytes(NameOfChunkIhdr)
                     .Concat(ihdrData.Width)
                     .Concat(ihdrData.Height)
                     .Concat(new byte[] {ihdrData.BitDepth, ihdrData.ColorType, ihdrData.CompressionMethod, ihdrData.FilterMethod, ihdrData.InterlaceMethod}))
@@ -96,14 +96,14 @@ namespace PngWriter
                 deflaterOutputStream.Write(decompressedData, 0, decompressedData.Length);
             }
 
-            byte[] compressedData = outputMemoryStream.ToArray().Reverse().ToArray();
+            byte[] compressedData = outputMemoryStream.ToArray();
 
             return new IDAT()
             {
                 ChunkLength = BitConverter.GetBytes(compressedData.Length).Reverse().ToArray(),
-                ChunkName = Encoding.ASCII.GetBytes("IDAT"),
+                ChunkName = Encoding.ASCII.GetBytes(NameOfChunkIdat),
                 DataImage = compressedData,
-                CRC = GetCRC32(Encoding.ASCII.GetBytes("IDAT").Concat(compressedData))
+                CRC = GetCRC32(Encoding.ASCII.GetBytes(NameOfChunkIdat).Concat(compressedData))
             };
         }
 

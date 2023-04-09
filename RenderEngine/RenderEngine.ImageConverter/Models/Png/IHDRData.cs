@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RenderEngine.ImageConverter.Models.Png
+﻿namespace RenderEngine.ImageConverter.Models.Png
 {
-    public struct IHDRData
+    public readonly struct IHDRData
     {
         public byte[] Width { get; init; }
         public byte[] Height { get; init; }
