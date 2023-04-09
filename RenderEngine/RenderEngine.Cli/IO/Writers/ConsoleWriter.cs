@@ -1,8 +1,8 @@
 ﻿using RenderEngine.Models;
 
-namespace RenderEngine.Console.IO.Writers;
+namespace RenderEngine.Cli.IO.Writers;
 
-public sealed class ConsoleWriter : IWriter
+internal sealed class ConsoleWriter
 {
     public void Serialize(Bitmap bitmap)
     {

@@ -27,10 +27,10 @@ internal class Program
     private static int Render(RenderCommand command)
     {
         Camera camera = new Camera(
+            Vector3.Zero,
             new Vector3(0, 1, 0),
-            new Vector3(0, -1, 0),
-            300,
-            200,
+            1920,
+            1080,
             1,
             30
         );
@@ -44,7 +44,7 @@ internal class Program
 
         List<ILighting> lighting = new List<ILighting>
         {
-            new DirectionalLight(new Vector3(1, -1, 0))
+            new DirectionalLight(new Vector3(0, 1, 0))
         };
 
         Scene scene = new Scene(shapes, lighting);
@@ -52,7 +52,7 @@ internal class Program
         Renderer renderer = new Renderer(camera, scene);
         var image = renderer.Render();
         var writer = new ImageWriter();
-        writer.Serialize(image);
+        writer.Write(image, command);
 
         return 0;
     }
