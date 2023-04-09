@@ -29,20 +29,21 @@ internal class Program
     private static int Render(RenderCommand command)
     {
         Camera camera = new Camera(
-            new Vector3(0, 1, 0),
-            new Vector3(0, -1, 0),
-            300,
-            200,
+            new Vector3(50, 50, 50),
+            new Vector3(-1, -1, -1),
+            400,
+            400,
             1,
             30
         );
 
-        List<IShape> shapes = new ObjReader().Read(command.SourceFile)[1].Faces;
+        List<IShape> shapes = new ObjReader().Read(command.SourceFile);
 
         var lighting = new List<ILighting>
         {
-            new DirectionalLight(new Vector3(1, 0, 0), new Pixel(255, 0, 0)),
-            new DirectionalLight(new Vector3(-1, 0, 0), new Pixel(0, 0, 255))
+            new DirectionalLight(new Vector3(0, -1, 0)),
+            //new DirectionalLight(new Vector3(1, -1, 0), new Pixel(255, 0, 0)),
+            //new DirectionalLight(new Vector3(-1, -1, 0), new Pixel(0, 0, 255))
         };
 
         var scene = new Scene(shapes, lighting);

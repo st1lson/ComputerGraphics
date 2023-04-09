@@ -2,7 +2,7 @@
   "profiles": {
     "RenderEngine.Cli": {
       "commandName": "Project",
-      "commandLineArgs": "render -s D:\\cow.obj -d D:\\cow.bmp"
+      "commandLineArgs": "render -s D:\\car.obj -d D:\\car.bmp"
     }
   }
 }
