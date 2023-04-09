@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\RenderEngine.ImageConverter\RenderEngine.ImageConverter.csproj" />
     <ProjectReference Include="..\RenderEngine\RenderEngine.csproj" />
   </ItemGroup>
 
