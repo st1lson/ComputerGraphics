@@ -1,6 +1,6 @@
 ﻿namespace RenderEngine.ImageConverter.Models.Png;
 
-public struct PngHeader
+public readonly struct PngHeader
 {
     public byte[] Signature { get; init; }
     public IHDR IHDR { get; init; }
