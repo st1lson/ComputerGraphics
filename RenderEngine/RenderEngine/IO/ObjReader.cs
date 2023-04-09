@@ -17,7 +17,7 @@ namespace RenderEngine.IO
         public List<IMesh> Read(string path)
         {
             StreamReader reader = new StreamReader(path);
-            string line;
+            string? line;
             List<IMesh> meshes = new List<IMesh>();
             meshes.Add(new Mesh());
             while ((line = reader.ReadLine()) != null)
@@ -50,7 +50,6 @@ namespace RenderEngine.IO
                         currentMesh.Faces.Add(new Triangle(currentMesh.Vertices[vertixIndexes[0]], currentMesh.Vertices[vertixIndexes[1]], currentMesh.Vertices[vertixIndexes[2]]));
                         break;
                 }
-
             }
 
             return meshes;
