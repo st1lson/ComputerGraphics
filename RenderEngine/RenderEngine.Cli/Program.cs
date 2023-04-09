@@ -52,7 +52,7 @@ internal class Program
         Renderer renderer = new Renderer(camera, scene);
         var image = renderer.Render();
         var writer = new ImageWriter();
-        writer.Serialize(image);
+        writer.Write(image, command);
 
         return 0;
     }

@@ -1,17 +1,17 @@
-﻿using RenderEngine.ImageConverter.Enums;
+﻿using RenderEngine.Cli.CommandLineCommands;
 using RenderEngine.ImageConverter.Factories;
 using RenderEngine.Models;
 
 namespace RenderEngine.Cli.IO.Writers;
 
-public class ImageWriter : IWriter
+internal class ImageWriter
 {
-    public void Serialize(Bitmap bitmap)
+    public void Write(Bitmap bitmap, RenderCommand command)
     {
         var factory = new PluginFactory();
 
-        var writer = factory.GetImageWriter(ImageFormat.Bmp);
+        var writer = factory.GetImageWriter(command.OutputFormat);
 
-        writer.Write(bitmap, "test.bmp");
+        writer.Write(bitmap, command.OutputFile);
     }
 }
