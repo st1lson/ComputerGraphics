@@ -1,10 +1,13 @@
 ﻿using RenderEngine.Basic;
+using RenderEngine.Models;
 
 namespace RenderEngine.Interfaces;
 
 public interface ILighting
 {
-    Vector3 RayLight { get; set; }
+    Pixel Color { get; set; }
 
-    float GetLight(IShape shape, Vector3 intersectionPoint);
+    Vector3 LightDir { get; set; }
+
+    Pixel GetLight(IShape shape, IReadOnlyList<IShape> shapes, Vector3 intersectionPoint, Vector3 cameraPos);
 }

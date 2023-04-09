@@ -1,11 +1,13 @@
 ﻿using CommandLine;
 using RenderEngine.Basic;
 using RenderEngine.Cli.CommandLineCommands;
+using RenderEngine.Cli.IO.Readers;
 using RenderEngine.Cli.IO.Writers;
 using RenderEngine.Core;
 using RenderEngine.ImageConverter.Factories;
 using RenderEngine.Interfaces;
 using RenderEngine.Lightings;
+using RenderEngine.Models;
 using RenderEngine.Shapes;
 
 namespace RenderEngine.Cli;
@@ -26,25 +28,21 @@ internal class Program
 
     private static int Render(RenderCommand command)
     {
-        var camera = new Camera(
-            Vector3.Zero,
+        Camera camera = new Camera(
             new Vector3(0, 1, 0),
-            1920,
-            1080,
+            new Vector3(0, -1, 0),
+            300,
+            200,
             1,
             30
         );
 
-        var shapes = new List<IShape>
-        {
-            new Sphere(new Vector3(0, 5, -1.5f), 1),
-            new Disk(new Vector3(1.5f, 5, 1.5f), 2, new Vector3(1, -1, 1)),
-            new Triangle(new Vector3(0, 5, 0), new Vector3(2.5f, 5, 0), new Vector3(0, 5, 2.5f))
-        };
+        List<IShape> shapes = new ObjReader().Read(command.SourceFile)[1].Faces;
 
         var lighting = new List<ILighting>
         {
-            new DirectionalLight(new Vector3(0, 1, 0))
+            new DirectionalLight(new Vector3(1, 0, 0), new Pixel(255, 0, 0)),
+            new DirectionalLight(new Vector3(-1, 0, 0), new Pixel(0, 0, 255))
         };
 
         var scene = new Scene(shapes, lighting);

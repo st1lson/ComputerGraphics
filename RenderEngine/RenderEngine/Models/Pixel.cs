@@ -29,6 +29,11 @@ public readonly struct Pixel
         return new Pixel((int)(pixel.R * multiplier.X), (int)(pixel.G * multiplier.Y), (int)(pixel.B * multiplier.Z));
     }
 
+    public static Pixel operator +(Pixel lhs, Pixel rhs)
+    {
+        return new Pixel(Math.Min(lhs.R + rhs.R, 255), Math.Min(lhs.G + rhs.G, 255), Math.Min(lhs.B + rhs.B, 255));
+    }
+
     public float GetNumeric()
     {
         return ((R + G + B) / 3f) / 255;
