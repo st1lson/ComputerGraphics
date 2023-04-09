@@ -8,30 +8,23 @@ namespace RenderEngine.Cli.IO.Readers;
 
 public class ObjReader : IMeshReader
 {
-    public List<IMesh> Read(string path)
+    public List<IShape> Read(string path)
     {
         using StreamReader reader = new StreamReader(path);
         string? line;
-        List<IMesh> meshes = new List<IMesh>();
+        List<IShape> faces = new List<IShape>();
         List<Vector3> vertices = new List<Vector3>();
-        meshes.Add(new Mesh());
         while ((line = reader.ReadLine()) != null)
         {
             string[] parts = line.Split(' ');
-
-            var currentMesh = meshes[^1];
             switch (parts[0])
             {
-                case "g":
-                    meshes.Add(new Mesh());
-                    break;
                 case "v":
                     float x = float.Parse(parts[1], CultureInfo.InvariantCulture);
                     float y = float.Parse(parts[2], CultureInfo.InvariantCulture);
                     float z = float.Parse(parts[3], CultureInfo.InvariantCulture);
                     Vector3 vertex = new Vector3(x, y, z);
                     vertices.Add(vertex);
-                    currentMesh.Vertices.Add(vertex);
                     break;
                 case "f":
                     List<int> vertixIndexes = new List<int>();
@@ -42,13 +35,16 @@ public class ObjReader : IMeshReader
                         int uvIndex = indices.Length > 1 && !string.IsNullOrEmpty(indices[1]) ? int.Parse(indices[1]) - 1 : -1;
                         int normalIndex = indices.Length > 2 ? int.Parse(indices[2]) - 1 : -1;
                         vertixIndexes.Add(vertexIndex);
+                        if (i >= 3)
+                        {
+                            faces.Add(new Triangle(vertices[vertixIndexes[0]], vertices[vertixIndexes[i - 2]], vertices[vertixIndexes[i - 1]]));
+                        }
                     }
 
-                    currentMesh.Faces.Add(new Triangle(vertices[vertixIndexes[0]], vertices[vertixIndexes[1]], vertices[vertixIndexes[2]]));
                     break;
             }
         }
 
-        return meshes;
+        return faces;
     }
 }
