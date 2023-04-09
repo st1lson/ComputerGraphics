@@ -72,12 +72,10 @@ public class Renderer
                     continue;
                 }
 
-                if (Scene.Lighting.Count == 0)
+                foreach (var lightning in Scene.Lighting)
                 {
-                    continue;
+                    bitmap[(int)i, j] += lightning.GetLight(saveShape!, Scene.Shapes, intersectionPoint.Value, Camera.Orig);
                 }
-
-                bitmap[(int)i, j] = new Pixel(255) * new Vector3(Scene.Lighting.First().GetLight(saveShape!, Scene.Shapes, intersectionPoint.Value, Camera.Orig));
             }
         });
 

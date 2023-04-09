@@ -13,6 +13,7 @@ public class ObjReader : IMeshReader
         using StreamReader reader = new StreamReader(path);
         string? line;
         List<IMesh> meshes = new List<IMesh>();
+        List<Vector3> vertices = new List<Vector3>();
         meshes.Add(new Mesh());
         while ((line = reader.ReadLine()) != null)
         {
@@ -28,7 +29,9 @@ public class ObjReader : IMeshReader
                     float x = float.Parse(parts[1], CultureInfo.InvariantCulture);
                     float y = float.Parse(parts[2], CultureInfo.InvariantCulture);
                     float z = float.Parse(parts[3], CultureInfo.InvariantCulture);
-                    currentMesh.Vertices.Add(new Vector3(x, y, z));
+                    Vector3 vertex = new Vector3(x, y, z);
+                    vertices.Add(vertex);
+                    currentMesh.Vertices.Add(vertex);
                     break;
                 case "f":
                     List<int> vertixIndexes = new List<int>();
@@ -41,7 +44,7 @@ public class ObjReader : IMeshReader
                         vertixIndexes.Add(vertexIndex);
                     }
 
-                    currentMesh.Faces.Add(new Triangle(currentMesh.Vertices[vertixIndexes[0]], currentMesh.Vertices[vertixIndexes[1]], currentMesh.Vertices[vertixIndexes[2]]));
+                    currentMesh.Faces.Add(new Triangle(vertices[vertixIndexes[0]], vertices[vertixIndexes[1]], vertices[vertixIndexes[2]]));
                     break;
             }
         }

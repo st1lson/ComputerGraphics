@@ -7,6 +7,7 @@ using RenderEngine.Core;
 using RenderEngine.ImageConverter.Factories;
 using RenderEngine.Interfaces;
 using RenderEngine.Lightings;
+using RenderEngine.Models;
 using RenderEngine.Shapes;
 
 namespace RenderEngine.Cli;
@@ -28,8 +29,8 @@ internal class Program
     private static int Render(RenderCommand command)
     {
         Camera camera = new Camera(
-            Vector3.Zero,
             new Vector3(0, 1, 0),
+            new Vector3(0, -1, 0),
             300,
             200,
             1,
@@ -40,7 +41,8 @@ internal class Program
 
         List<ILighting> lighting = new List<ILighting>
         {
-            new DirectionalLight(new Vector3(0, 1, 0))
+            new DirectionalLight(new Vector3(1, 0, 0), new Pixel(255, 0, 0)),
+            new DirectionalLight(new Vector3(-1, 0, 0), new Pixel(0, 0, 255))
         };
 
         Scene scene = new Scene(shapes, lighting);
