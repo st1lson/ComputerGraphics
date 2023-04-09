@@ -5,24 +5,48 @@ namespace RenderEngine.Lightings;
 
 public class DirectionalLight : ILighting
 {
-    public Vector3 RayLight { get; set; }
+    public Vector3 LightDir { get; set; }
 
     public DirectionalLight(Vector3 rayLight)
     {
-        RayLight = -rayLight.Normalize();
+        LightDir = -rayLight.Normalize();
     }
 
-    public float GetLight(IShape shape, Vector3 intersectionPoint, Vector3 cameraPos)
+    public float GetLight(IShape shape, IReadOnlyList<IShape> shapes, Vector3 intersectionPoint, Vector3 cameraPos)
     {
         Vector3 normal = shape.GetNormal(intersectionPoint).Normalize();
-        float cosA = Vector3.Dot(normal, RayLight);
+        float cosA = Vector3.Dot(normal, LightDir);
         float cosB = Vector3.Dot(normal, cameraPos - intersectionPoint);
 
-        if ((cosA > 0 && cosB < 0) || (cosA < 0 && cosB < 0)) 
+        if ((cosA > 0.00001f && cosB < -0.00001f) || (cosA < -0.00001f && cosB < -0.00001f)) 
         {
             normal = -normal;
         }
 
-        return Vector3.Dot(normal, RayLight);
+        Ray rayLight = new Ray(intersectionPoint, LightDir);
+        bool isShadowed = false;
+        foreach (IShape otherShapes in shapes)
+        {
+            if (otherShapes == shape) 
+            {
+                continue;
+            }
+
+            var intersection = otherShapes.Intersects(rayLight);
+            if (intersectionPoint.X > 2 && intersectionPoint.Z < 1 && intersectionPoint.Z > -1)
+            {
+                int k = 0;
+                k = 1;
+            }
+            if (intersection != null) 
+            {
+                isShadowed = true;
+                break;
+            }
+        }
+
+
+
+        return isShadowed ? 0 : Vector3.Dot(normal, LightDir);
     }
 }

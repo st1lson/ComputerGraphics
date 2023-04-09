@@ -4,7 +4,7 @@ namespace RenderEngine.Interfaces;
 
 public interface ILighting
 {
-    Vector3 RayLight { get; set; }
+    Vector3 LightDir { get; set; }
 
-    float GetLight(IShape shape, Vector3 intersectionPoint, Vector3 cameraPos);
+    float GetLight(IShape shape, IReadOnlyList<IShape> shapes, Vector3 intersectionPoint, Vector3 cameraPos);
 }

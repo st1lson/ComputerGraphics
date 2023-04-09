@@ -12,19 +12,24 @@ internal class Program
     private static void Main(string[] args)
     {
         Camera camera = new Camera(
-            new Vector3(0, 10, 0),
-            new Vector3(0, -1, 0),
+            Vector3.Zero,
+            new Vector3(0, 1, 0),
             200,
             200,
             1,
             30
         );
 
-        List<IShape> shapes = new ObjReader().Read(@"D:\cow.obj")[1].Faces;
+        //List<IShape> shapes = new ObjReader().Read(@"D:\cow.obj")[1].Faces;
+        List<IShape> shapes = new List<IShape>()
+        {
+            new Sphere(new Vector3(4, 10, 0), 1),
+            new Disk(new Vector3(0, 10, 0), 3, new Vector3(-1, 1, -1)),
+        };
 
         List<ILighting> lightings = new List<ILighting>
         {
-            new DirectionalLight(new Vector3(0, 1, 0))
+            new DirectionalLight(new Vector3(-1, 0, 0))
         };
 
         Scene scene = new Scene(shapes, lightings);
