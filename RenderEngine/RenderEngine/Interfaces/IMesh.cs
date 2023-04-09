@@ -9,8 +9,8 @@ namespace RenderEngine.Interfaces
 {
     public interface IMesh
     {
-        public List<Vector3> Vertices { get; }
+        List<Vector3> Vertices { get; }
 
-        public List<IShape> Faces { get; }
+        List<IShape> Faces { get; }
     }
 }
