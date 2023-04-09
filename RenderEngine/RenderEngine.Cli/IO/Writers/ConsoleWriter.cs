@@ -1,6 +1,6 @@
 ﻿using RenderEngine.Models;
 
-namespace RenderEngine.Console.IO.Writers;
+namespace RenderEngine.Cli.IO.Writers;
 
 public sealed class ConsoleWriter : IWriter
 {

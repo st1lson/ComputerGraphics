@@ -4,11 +4,11 @@ namespace RenderEngine.Models;
 
 public readonly struct Pixel
 {
-    public readonly int R { get; init; }
+    public int R { get; init; }
 
-    public readonly int G { get; init; }
+    public int G { get; init; }
 
-    public readonly int B { get; init; }
+    public int B { get; init; }
 
     public Pixel(int r, int g, int b)
     {

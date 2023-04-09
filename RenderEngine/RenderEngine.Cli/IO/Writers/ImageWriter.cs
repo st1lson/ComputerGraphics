@@ -2,7 +2,7 @@
 using RenderEngine.ImageConverter.Factories;
 using RenderEngine.Models;
 
-namespace RenderEngine.Console.IO.Writers;
+namespace RenderEngine.Cli.IO.Writers;
 
 public class ImageWriter : IWriter
 {

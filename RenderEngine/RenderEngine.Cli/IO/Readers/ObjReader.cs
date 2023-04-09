@@ -4,7 +4,7 @@ using RenderEngine.Interfaces;
 using RenderEngine.Models;
 using RenderEngine.Shapes;
 
-namespace RenderEngine.Console.IO.Readers;
+namespace RenderEngine.Cli.IO.Readers;
 
 public class ObjReader : IMeshReader
 {
