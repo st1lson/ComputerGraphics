@@ -12,8 +12,8 @@ internal class Program
     private static void Main(string[] args)
     {
         Camera camera = new Camera(
-            Vector3.Zero,
-            new Vector3(0, 1, 0),
+            new Vector3(0, 10, 0),
+            new Vector3(0, -1, 0),
             200,
             200,
             1,

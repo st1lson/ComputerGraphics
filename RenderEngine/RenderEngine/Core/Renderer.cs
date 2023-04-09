@@ -72,7 +72,7 @@ public class Renderer
                     continue;
                 }
 
-                screen[i, j] = Scene.Lighting.First().GetLight(saveShape!, intersectionPoint.Value);
+                screen[i, j] = Scene.Lighting.First().GetLight(saveShape!, intersectionPoint.Value, Camera.Orig);
             }
         }
 
