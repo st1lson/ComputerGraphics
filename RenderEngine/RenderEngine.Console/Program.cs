@@ -1,6 +1,7 @@
 ﻿using RenderEngine.Basic;
 using RenderEngine.Core;
 using RenderEngine.Interfaces;
+using RenderEngine.IO;
 using RenderEngine.Lightings;
 using RenderEngine.Shapes;
 
@@ -19,12 +20,14 @@ internal class Program
             30
         );
 
+        List<IShape> shapes = new ObjReader().Read(@"D:\cow.obj")[1].Faces;
+/*
         List<IShape> shapes = new List<IShape>()
         {
             new Sphere(new Vector3(0, 5, -1.5f), 1),
             new Disk(new Vector3(1.5f, 5, 1.5f), 2, new Vector3(1, -1, 1)),
             new Triangle(new Vector3(0, 5, 0), new Vector3(2.5f, 5, 0), new Vector3(0, 5, 2.5f))
-        };
+        };*/
 
         List<ILighting> lightings = new List<ILighting>
         {
