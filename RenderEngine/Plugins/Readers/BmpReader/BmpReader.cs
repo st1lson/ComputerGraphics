@@ -1,7 +1,6 @@
 ﻿using RenderEngine.ImageConverter.Interfaces;
 using RenderEngine.ImageConverter.Models.Bmp;
 using RenderEngine.Models;
-using System.Reflection.PortableExecutable;
 
 namespace BmpReader
 {
