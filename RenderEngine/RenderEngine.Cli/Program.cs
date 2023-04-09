@@ -18,7 +18,7 @@ internal class Program
             .MapResult(
                 (RenderCommand command) => Render(command),
                 (ConvertCommand command) => Convert(command),
-                _ => throw new Exception("Wrong command")
+                _ => 1
             );
 
         Environment.Exit(result);
@@ -26,7 +26,7 @@ internal class Program
 
     private static int Render(RenderCommand command)
     {
-        Camera camera = new Camera(
+        var camera = new Camera(
             Vector3.Zero,
             new Vector3(0, 1, 0),
             1920,
@@ -35,21 +35,21 @@ internal class Program
             30
         );
 
-        List<IShape> shapes = new List<IShape>()
+        var shapes = new List<IShape>
         {
             new Sphere(new Vector3(0, 5, -1.5f), 1),
             new Disk(new Vector3(1.5f, 5, 1.5f), 2, new Vector3(1, -1, 1)),
             new Triangle(new Vector3(0, 5, 0), new Vector3(2.5f, 5, 0), new Vector3(0, 5, 2.5f))
         };
 
-        List<ILighting> lighting = new List<ILighting>
+        var lighting = new List<ILighting>
         {
             new DirectionalLight(new Vector3(0, 1, 0))
         };
 
-        Scene scene = new Scene(shapes, lighting);
+        var scene = new Scene(shapes, lighting);
 
-        Renderer renderer = new Renderer(camera, scene);
+        var renderer = new Renderer(camera, scene);
         var image = renderer.Render();
         var writer = new ImageWriter();
         writer.Write(image, command);

@@ -14,27 +14,27 @@ internal sealed class ConsoleWriter
 
                 if (numericValue <= 0)
                 {
-                    System.Console.Write(" ");
+                    Console.Write(" ");
                 }
                 else if (numericValue <= 0.2 && numericValue > 0)
                 {
-                    System.Console.Write(".");
+                    Console.Write(".");
                 }
                 else if (numericValue <= 0.5 && numericValue > 0.2)
                 {
-                    System.Console.Write("*");
+                    Console.Write("*");
                 }
                 else if (numericValue <= 0.8 && numericValue > 0.5)
                 {
-                    System.Console.Write("O");
+                    Console.Write("O");
                 }
                 else
                 {
-                    System.Console.Write("#");
+                    Console.Write("#");
                 }
             }
 
-            System.Console.WriteLine();
+            Console.WriteLine();
         }
     }
 }
