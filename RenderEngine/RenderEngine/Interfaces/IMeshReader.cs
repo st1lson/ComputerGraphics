@@ -1,14 +1,8 @@
 ﻿using RenderEngine.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace RenderEngine.Interfaces
+namespace RenderEngine.Interfaces;
+
+public interface IMeshReader
 {
-    public interface IMeshReader
-    {
-        List<IMesh> Read(string path);
-    }
+    List<IMesh> Read(string path);
 }
