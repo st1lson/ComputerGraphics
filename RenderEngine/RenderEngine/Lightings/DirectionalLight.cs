@@ -41,6 +41,6 @@ public class DirectionalLight : ILighting
             }
         }
 
-        return isShadowed ? 0 : Vector3.Dot(normal, LightDir);
+        return isShadowed ? 0 : Math.Max(Vector3.Dot(normal, LightDir), 0);
     }
 }

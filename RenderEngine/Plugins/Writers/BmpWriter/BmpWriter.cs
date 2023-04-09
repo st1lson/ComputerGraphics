@@ -49,13 +49,13 @@ namespace BmpWriter
             writer.Write(header.YResolution);
             writer.Write(header.ColorsUsed);
             writer.Write(header.ColorsImportant);
-            for (uint y = 0; y < header.Height; y++)
+            for (uint y = header.Height - 1; y < header.Height; y--)
             {
                 for (uint x = 0; x < header.Width; x++)
                 {
-                    writer.Write((byte)bitmap[y, x].R);
-                    writer.Write((byte)bitmap[y, x].G);
                     writer.Write((byte)bitmap[y, x].B);
+                    writer.Write((byte)bitmap[y, x].G);
+                    writer.Write((byte)bitmap[y, x].R);
                 }
                 for (int j = 0; j < rowPadding; j++)
                 {

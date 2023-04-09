@@ -1,6 +1,8 @@
 ﻿using RenderEngine.Basic;
 using RenderEngine.Interfaces;
 using RenderEngine.Models;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace RenderEngine.Core;
 
@@ -35,7 +37,9 @@ public class Renderer
         Vector3 screenCenter = Camera.Orig + Camera.Dir * Camera.FocalLength;
         Vector3 screenOrig = screenCenter + up * Camera.PixelHeight / 2 - right * Camera.PixelWidth / 2;
 
-        for (int i = 0; i < Camera.PixelHeight; i++)
+
+
+        Parallel.For(0, Camera.PixelHeight, new ParallelOptions { MaxDegreeOfParallelism = 4 }, (i) =>
         {
             for (int j = 0; j < Camera.PixelWidth; j++)
             {
@@ -64,7 +68,7 @@ public class Renderer
 
                 if (intersectionPoint == null)
                 {
-                    bitmap[i, j] = new Pixel(0);
+                    bitmap[(int)i, j] = new Pixel(0);
                     continue;
                 }
 
@@ -73,9 +77,9 @@ public class Renderer
                     continue;
                 }
 
-                bitmap[i, j] = new Pixel(255) * new Vector3(Scene.Lighting.First().GetLight(saveShape!, intersectionPoint.Value));
+                bitmap[(int)i, j] = new Pixel(255) * new Vector3(Scene.Lighting.First().GetLight(saveShape!, Scene.Shapes, intersectionPoint.Value, Camera.Orig));
             }
-        }
+        });
 
         return bitmap;
     }

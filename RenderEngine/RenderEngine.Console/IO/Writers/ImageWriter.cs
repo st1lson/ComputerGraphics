@@ -12,6 +12,6 @@ public class ImageWriter : IWriter
 
         var writer = factory.GetImageWriter(ImageFormat.Bmp);
 
-        writer.Write(bitmap, "test.bmp");
+        writer.Write(bitmap, @"D:\test.bmp");
     }
 }

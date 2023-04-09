@@ -1,6 +1,7 @@
 ﻿using RenderEngine.ImageConverter.Interfaces;
 using RenderEngine.ImageConverter.Models.Bmp;
 using RenderEngine.Models;
+using System.Reflection.PortableExecutable;
 
 namespace BmpReader
 {
@@ -37,7 +38,7 @@ namespace BmpReader
 
             var bitmap = new Bitmap(Header.Height, Header.Width);
 
-            for (uint y = 0; y < Header.Height; y++)
+            for (uint y = Header.Height - 1; y < Header.Height; y--)
             {
                 for (uint x = 0; x < Header.Width; x++)
                 {
