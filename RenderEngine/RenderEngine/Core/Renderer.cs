@@ -1,5 +1,6 @@
 ﻿using RenderEngine.Basic;
 using RenderEngine.Interfaces;
+using RenderEngine.Models;
 
 namespace RenderEngine.Core;
 
@@ -15,9 +16,9 @@ public class Renderer
         Scene = scene;
     }
 
-    public float[,] Render()
+    public Bitmap Render()
     {
-        float[,] screen = new float[Camera.PixelHeight, Camera.PixelWidth];
+        var bitmap = new Bitmap(Camera.PixelHeight, Camera.PixelWidth);
 
         var verticalFovInRadians = Camera.VerticalFOV * (Math.PI / 180);
 
@@ -63,7 +64,7 @@ public class Renderer
 
                 if (intersectionPoint == null)
                 {
-                    screen[i, j] = 0;
+                    bitmap[i, j] = new Pixel(0);
                     continue;
                 }
 
@@ -72,10 +73,10 @@ public class Renderer
                     continue;
                 }
 
-                screen[i, j] = Scene.Lighting.First().GetLight(saveShape!, Scene.Shapes, intersectionPoint.Value, Camera.Orig);
+                bitmap[i, j] = new Pixel(255) * new Vector3(Scene.Lighting.First().GetLight(saveShape!, intersectionPoint.Value));
             }
         }
 
-        return screen;
+        return bitmap;
     }
 }

@@ -1,10 +1,13 @@
-﻿namespace RenderEngine.ImageConverter.Models;
+﻿namespace RenderEngine.Models;
 
 public class Bitmap
 {
     private readonly Pixel[,] _pixels;
+
     public uint Height { get; init; }
+
     public uint Width { get; init; }
+
     public Bitmap(uint height, uint width)
     {
         _pixels = new Pixel[height, width];
@@ -23,4 +26,6 @@ public class Bitmap
         get => _pixels[y, x];
         set => _pixels[y, x] = value;
     }
+
+    public int GetLength(int dimension) => _pixels.GetLength(dimension);
 }

@@ -1,8 +1,6 @@
 ﻿using RenderEngine.ImageConverter.Interfaces;
-using RenderEngine.ImageConverter.Models;
 using RenderEngine.ImageConverter.Models.Bmp;
-using System.IO;
-using System.Reflection.PortableExecutable;
+using RenderEngine.Models;
 
 namespace BmpWriter
 {
