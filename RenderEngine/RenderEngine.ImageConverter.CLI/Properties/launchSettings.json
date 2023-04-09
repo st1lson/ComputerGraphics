@@ -2,7 +2,7 @@
   "profiles": {
     "RenderEngine.ImageConverter.CLI": {
       "commandName": "Project",
-      "commandLineArgs": "-s \"E:\\dataset\\input_nn\\c1.png\" -d \"E:\\dataset\\convert.bmp\""
+      "commandLineArgs": "-s \"E:\\sample_640×426.bmp\" -d \"E:\\image_to_png.png\""
     }
   }
 }

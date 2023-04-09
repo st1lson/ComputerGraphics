@@ -4,6 +4,9 @@ using RenderEngine.ImageConverter.Models.Png;
 using System.Drawing;
 using System.IO;
 using System.IO.Compression;
+using System.Text;
+using ICSharpCode.SharpZipLib.GZip;
+using ICSharpCode.SharpZipLib.Zip.Compression.Streams;
 
 namespace PngReader
 {
@@ -36,10 +39,10 @@ namespace PngReader
             while(nameOfChunk != "IEND")
             {
                 var chunkLength = ReverseBytes(reader.ReadUInt32());
-                nameOfChunk = BitConverter.ToString(BitConverter.GetBytes(ReverseBytes(reader.ReadUInt32())));
+                nameOfChunk = Encoding.ASCII.GetString(BitConverter.GetBytes(reader.ReadUInt32()));
 
                 var bytesOfData = reader.ReadBytes((int)chunkLength);
-                Array.Reverse(bytesOfData);
+                //Array.Reverse(bytesOfData);
 
                 if (nameOfChunk == "IDAT")
                 {
@@ -49,33 +52,15 @@ namespace PngReader
                 reader.ReadUInt32(); // CRC 4 bytes
             }
 
-            Bitmap bitmap = new ((uint)width, (uint)height);
+            var trap = bytesOfIDAT.SelectMany(byteArr => byteArr).ToArray();
+            Array.Reverse(trap);
 
-            foreach (var byteOdIdat in bytesOfIDAT)
-            {
-                using (var compressedStream = new MemoryStream(byteOdIdat))
-                using (var zlibStream = new DeflateStream(compressedStream, CompressionMode.Decompress))
-                using (var decompressedStream = new MemoryStream())
-                {
-                    zlibStream.CopyTo(decompressedStream);
-                    var decompressedData = decompressedStream.ToArray();
+            //var decompress = LZW.LzwDecompress(trap);
 
-                    // create a bitmap object
+            Bitmap bitmap = new Bitmap((uint)width, (uint)height);
 
-                    // set the pixel values from the decompressed data
-                    var index = 0;
-                    for (var y = 0; y < (int)height; y++)
-                    {
-                        for (var x = 0; x < (int)width; x++)
-                        {
-                            var r = decompressedData[index++];
-                            var g = decompressedData[index++];
-                            var b = decompressedData[index++];
-                            bitmap[y, x] = new Pixel(r, g, b);
-                        }
-                    }
-                }
-            }
+
+            var decompress = Decompress(trap);
 
             return bitmap;
             
@@ -111,6 +96,17 @@ namespace PngReader
             //}
 
             //return bitmap;
+        }
+
+        static byte[] Decompress(byte[] data)
+        {
+            using (var compressedStream = new MemoryStream(data))
+            using (var zipStream = new GZipStream(compressedStream, CompressionMode.Decompress))
+            using (var resultStream = new MemoryStream())
+            {
+                zipStream.CopyTo(resultStream);
+                return resultStream.ToArray();
+            }
         }
 
         private static ulong ReverseBytes(uint a)
