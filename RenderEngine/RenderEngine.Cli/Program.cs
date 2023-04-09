@@ -20,7 +20,7 @@ internal class Program
             .MapResult(
                 (RenderCommand command) => Render(command),
                 (ConvertCommand command) => Convert(command),
-                _ => throw new Exception("Wrong command")
+                _ => 1
             );
 
         Environment.Exit(result);
@@ -39,15 +39,15 @@ internal class Program
 
         List<IShape> shapes = new ObjReader().Read(command.SourceFile)[1].Faces;
 
-        List<ILighting> lighting = new List<ILighting>
+        var lighting = new List<ILighting>
         {
             new DirectionalLight(new Vector3(1, 0, 0), new Pixel(255, 0, 0)),
             new DirectionalLight(new Vector3(-1, 0, 0), new Pixel(0, 0, 255))
         };
 
-        Scene scene = new Scene(shapes, lighting);
+        var scene = new Scene(shapes, lighting);
 
-        Renderer renderer = new Renderer(camera, scene);
+        var renderer = new Renderer(camera, scene);
         var image = renderer.Render();
         var writer = new ImageWriter();
         writer.Write(image, command);
