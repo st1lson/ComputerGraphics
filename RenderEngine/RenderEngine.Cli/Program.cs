@@ -1,6 +1,7 @@
 ﻿using CommandLine;
 using RenderEngine.Basic;
 using RenderEngine.Cli.CommandLineCommands;
+using RenderEngine.Cli.IO.Readers;
 using RenderEngine.Cli.IO.Writers;
 using RenderEngine.Core;
 using RenderEngine.ImageConverter.Factories;
@@ -29,18 +30,13 @@ internal class Program
         Camera camera = new Camera(
             Vector3.Zero,
             new Vector3(0, 1, 0),
-            1920,
-            1080,
+            300,
+            200,
             1,
             30
         );
 
-        List<IShape> shapes = new List<IShape>()
-        {
-            new Sphere(new Vector3(0, 5, -1.5f), 1),
-            new Disk(new Vector3(1.5f, 5, 1.5f), 2, new Vector3(1, -1, 1)),
-            new Triangle(new Vector3(0, 5, 0), new Vector3(2.5f, 5, 0), new Vector3(0, 5, 2.5f))
-        };
+        List<IShape> shapes = new ObjReader().Read(command.SourceFile)[1].Faces;
 
         List<ILighting> lighting = new List<ILighting>
         {
