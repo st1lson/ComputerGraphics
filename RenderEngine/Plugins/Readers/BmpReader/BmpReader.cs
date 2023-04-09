@@ -1,6 +1,6 @@
 ﻿using RenderEngine.ImageConverter.Interfaces;
-using RenderEngine.ImageConverter.Models;
 using RenderEngine.ImageConverter.Models.Bmp;
+using RenderEngine.Models;
 
 namespace BmpReader
 {

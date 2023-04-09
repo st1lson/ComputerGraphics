@@ -1,4 +1,4 @@
-﻿using RenderEngine.ImageConverter.Models;
+﻿using RenderEngine.Models;
 
 namespace RenderEngine.ImageConverter.Interfaces;
 

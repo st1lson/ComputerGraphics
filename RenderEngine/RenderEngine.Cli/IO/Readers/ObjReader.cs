@@ -1,10 +1,10 @@
-﻿using RenderEngine.Basic;
+﻿using System.Globalization;
+using RenderEngine.Basic;
 using RenderEngine.Interfaces;
 using RenderEngine.Models;
 using RenderEngine.Shapes;
-using System.Globalization;
 
-namespace RenderEngine.IO;
+namespace RenderEngine.Cli.IO.Readers;
 
 public class ObjReader : IMeshReader
 {
@@ -31,7 +31,7 @@ public class ObjReader : IMeshReader
                     currentMesh.Vertices.Add(new Vector3(x, y, z));
                     break;
                 case "f":
-                    List<int> vertixIndexes = new List<int>(); 
+                    List<int> vertixIndexes = new List<int>();
                     for (int i = 1; i < parts.Length; i++)
                     {
                         string[] indices = parts[i].Split('/');
