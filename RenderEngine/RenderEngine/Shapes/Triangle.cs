@@ -4,7 +4,7 @@ using RenderEngine.Transformer;
 
 namespace RenderEngine.Shapes;
 
-public record Triangle : IShape
+public class Triangle : IShape
 {
     public Vector3 V0 { get; private set; }
 

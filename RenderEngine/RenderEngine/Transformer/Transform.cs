@@ -1,6 +1,4 @@
 ﻿using RenderEngine.Basic;
-using System;
-using System.Runtime.InteropServices;
 
 namespace RenderEngine.Transformer
 {

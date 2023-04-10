@@ -4,7 +4,7 @@ using RenderEngine.Transformer;
 
 namespace RenderEngine.Shapes;
 
-public record Sphere : IShape
+public class Sphere : IShape
 {
     public Vector3 Orig { get; private set; }
 
