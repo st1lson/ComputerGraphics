@@ -7,6 +7,7 @@ using System.IO.Compression;
 using System.Text;
 using ICSharpCode.SharpZipLib.GZip;
 using ICSharpCode.SharpZipLib.Zip.Compression.Streams;
+using RenderEngine.Models;
 
 namespace PngReader
 {

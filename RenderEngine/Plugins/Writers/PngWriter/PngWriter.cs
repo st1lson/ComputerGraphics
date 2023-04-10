@@ -6,6 +6,7 @@ using System.IO.Compression;
 using System.Reflection.PortableExecutable;
 using System.Text;
 using ICSharpCode.SharpZipLib.Zip.Compression.Streams;
+using RenderEngine.Models;
 
 namespace PngWriter
 {
