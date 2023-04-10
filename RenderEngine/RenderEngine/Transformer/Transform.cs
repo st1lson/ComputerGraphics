@@ -4,9 +4,9 @@ using System.Runtime.InteropServices;
 
 namespace RenderEngine.Transformer
 {
-    public class Transformer
+    public class Transform
     {
-        public float[,] IdentityMatrix { get; } = new float[,]
+        public static float[,] IdentityMatrix { get; } = new float[,]
             {
                 { 1, 0, 0, 0 },
                 { 0, 1, 0, 0 },
@@ -14,14 +14,14 @@ namespace RenderEngine.Transformer
                 { 0, 0, 0, 1 }
             };
 
-        public Transformer(float[,] matrix)
+        public Transform(float[,] matrix)
         {
             MatrixTransform = matrix;
         }
 
         public float[,] MatrixTransform { get; }
 
-        public Transformer RotateX(float rad, bool clockwise=true)
+        public Transform RotateX(float rad, bool clockwise=true)
         {
             if (clockwise)
             {
@@ -36,10 +36,10 @@ namespace RenderEngine.Transformer
                 { 0, 0, 0, 1 }
             };
 
-            return new Transformer(Matrix.Multiply(rotationMatrix, MatrixTransform));
+            return new Transform(Matrix.Multiply(rotationMatrix, MatrixTransform));
         }
 
-        public Transformer RotateY(float rad, bool clockwise = true)
+        public Transform RotateY(float rad, bool clockwise = true)
         {
             if (clockwise)
             {
@@ -54,10 +54,10 @@ namespace RenderEngine.Transformer
                 { 0, 0, 0, 1 }
             };
 
-            return new Transformer(Matrix.Multiply(rotationMatrix, MatrixTransform));
+            return new Transform(Matrix.Multiply(rotationMatrix, MatrixTransform));
         }
 
-        public Transformer RotateZ(float rad, bool clockwise = true)
+        public Transform RotateZ(float rad, bool clockwise = true)
         {
             if (clockwise)
             {
@@ -72,10 +72,10 @@ namespace RenderEngine.Transformer
                 { 0, 0, 0, 1 }
             };
 
-            return new Transformer(Matrix.Multiply(rotationMatrix, MatrixTransform));
+            return new Transform(Matrix.Multiply(rotationMatrix, MatrixTransform));
         }
 
-        public void Translate(Vector3 vector)
+        public Transform Translate(Vector3 vector)
         {
             float[,] translationMatrix = new float[4, 4]
             {
@@ -85,10 +85,10 @@ namespace RenderEngine.Transformer
                 { 0, 0, 0, 1 }
             };
 
-            new Transformer(Matrix.Multiply(translationMatrix, MatrixTransform));
+            return new Transform(Matrix.Multiply(translationMatrix, MatrixTransform));
         }
 
-        public Transformer Scale(Vector3 vector)
+        public Transform Scale(Vector3 vector)
         {
             float[,] scaleMatrix = new float[4, 4]
             {
@@ -98,7 +98,7 @@ namespace RenderEngine.Transformer
             { 0, 0, 0, 1 }
             };
 
-            return new Transformer(Matrix.Multiply(scaleMatrix, MatrixTransform));
+            return new Transform(Matrix.Multiply(scaleMatrix, MatrixTransform));
         }
     }
 }

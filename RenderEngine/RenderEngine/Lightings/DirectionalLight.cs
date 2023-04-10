@@ -2,6 +2,7 @@
 using RenderEngine.Core;
 using RenderEngine.Interfaces;
 using RenderEngine.Models;
+using RenderEngine.Transformer;
 
 namespace RenderEngine.Lightings;
 
@@ -11,7 +12,7 @@ public class DirectionalLight : ILighting
 
     public Pixel Color { get; set; } = new Pixel(255);
 
-    private const float Treshold = 0.00001f;
+    private const float Threshold = 0.00001f;
 
     public DirectionalLight(Vector3 rayLight)
     {
@@ -30,7 +31,7 @@ public class DirectionalLight : ILighting
         float cosA = Vector3.Dot(normal, LightDir);
         float cosB = Vector3.Dot(normal, cameraPos - intersectionPoint);
 
-        if ((cosA > Treshold && cosB < -Treshold) || (cosA < -Treshold && cosB < -Treshold)) 
+        if ((cosA > Threshold && cosB < -Threshold) || (cosA < -Threshold && cosB < -Threshold)) 
         {
             normal = -normal;
         }
@@ -55,5 +56,10 @@ public class DirectionalLight : ILighting
         var coef = isShadowed ? 0 : Math.Max(Vector3.Dot(normal, LightDir), 0);
 
         return Color * new Vector3(coef);
+    }
+
+    public void Transform(Transform transform)
+    {
+        LightDir = LightDir.TransformAsDirection(transform);
     }
 }

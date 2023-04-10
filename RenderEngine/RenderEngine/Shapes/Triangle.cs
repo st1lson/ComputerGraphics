@@ -1,10 +1,22 @@
 ﻿using RenderEngine.Basic;
 using RenderEngine.Interfaces;
+using RenderEngine.Transformer;
 
 namespace RenderEngine.Shapes;
 
-public record Triangle(Vector3 V0, Vector3 V1, Vector3 V2) : IShape
+public record Triangle : IShape
 {
+    public Vector3 V0 { get; private set; }
+
+    public Vector3 V1 { get; private set; }
+    public Vector3 V2 { get; private set; }
+
+    public Triangle(Vector3 v0, Vector3 v1, Vector3 v2)
+    {
+        V0 = v0;
+        V1 = v1;
+        V2 = v2;
+    }
     public Vector3? Intersects(Ray ray)
     {
         const double tolerance = 1e-5d;
@@ -52,5 +64,12 @@ public record Triangle(Vector3 V0, Vector3 V1, Vector3 V2) : IShape
         var edge2 = V2 - V0;
 
         return Vector3.Cross(edge1, edge2);
+    }
+
+    public void Transform(Transform transform)
+    {
+        V0 = V0.Transform(transform);
+        V1 = V1.Transform(transform);
+        V2 = V2.Transform(transform);
     }
 }

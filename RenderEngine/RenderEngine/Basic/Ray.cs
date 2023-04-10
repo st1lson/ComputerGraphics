@@ -19,9 +19,9 @@ public readonly struct Ray
         return Orig + Dir * t;
     }
 
-    public Ray Transform(Transformer transform)
+    public Ray Transform(Transform transform)
     {
-        return new Ray(Orig.Transform())
+        return new Ray(Orig.Transform(transform), Dir.TransformAsDirection(transform));
     }
 
     public override string ToString()

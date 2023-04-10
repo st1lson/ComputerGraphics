@@ -1,12 +1,13 @@
 ﻿using RenderEngine.Basic;
+using RenderEngine.Transformer;
 
 namespace RenderEngine.Core;
 
 public class Camera
 {
-    public Vector3 Orig { get; init; }
+    public Vector3 Orig { get; private set; }
 
-    public Vector3 Dir { get; init; }
+    public Vector3 Dir { get; private set; }
 
     public uint PixelWidth { get; init; }
 
@@ -24,5 +25,11 @@ public class Camera
         PixelHeight = pixelHeight;
         FocalLength = focalLength;
         VerticalFOV = verticalFOV;
+    }
+
+    public void Transform(Transform transform)
+    {
+        Orig = Orig.Transform(transform);
+        Dir = Dir.TransformAsDirection(transform);
     }
 }

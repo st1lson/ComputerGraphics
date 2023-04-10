@@ -1,4 +1,9 @@
-﻿namespace RenderEngine.Basic;
+﻿using RenderEngine.Transformer;
+using System.Runtime.CompilerServices;
+using System.Security.Cryptography.X509Certificates;
+using RenderEngine.Transformer;
+
+namespace RenderEngine.Basic;
 
 public readonly struct Vector3
 {
@@ -67,6 +72,22 @@ public readonly struct Vector3
     public static float Dot(Vector3 left, Vector3 right)
     {
         return left.X * right.X + left.Y * right.Y + left.Z * right.Z;
+    }
+
+    public Vector3 Transform(Transform transform)
+    {
+        float[,] vectorMatrix = new float[,]{ {X}, { Y }, { Z }, { 1 } };
+        var transformVector = Matrix.Multiply(transform.MatrixTransform, vectorMatrix);
+
+        return new Vector3(transformVector[0,0], transformVector[1, 0] , transformVector[2, 0] );
+    }
+
+    public Vector3 TransformAsDirection(Transform transform)
+    {
+        float[,] vectorMatrix = new float[,] { { X }, { Y }, { Z }, { 0 } };
+        var transformVector = Matrix.Multiply(transform.MatrixTransform, vectorMatrix);
+
+        return new Vector3(transformVector[0, 0], transformVector[1, 0], transformVector[2, 0]);
     }
 
     public static Vector3 Cross(Vector3 left, Vector3 right)

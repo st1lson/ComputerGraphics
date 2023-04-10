@@ -9,6 +9,7 @@ using RenderEngine.Interfaces;
 using RenderEngine.Lightings;
 using RenderEngine.Models;
 using RenderEngine.Shapes;
+using RenderEngine.Transformer;
 
 namespace RenderEngine.Cli;
 
@@ -29,15 +30,22 @@ internal class Program
     private static int Render(RenderCommand command)
     {
         Camera camera = new Camera(
-            new Vector3(50, 50, 50),
-            new Vector3(-1, -1, -1),
-            400,
-            400,
+            new Vector3(0, 1, 0),
+            new Vector3(0, -1, 0),
+            200,
+            200,
             1,
             30
         );
 
         List<IShape> shapes = new ObjReader().Read(command.SourceFile);
+
+        Transform transform = new Transform(Transform.IdentityMatrix).Translate(new Vector3(0.5f, 0, 0));
+
+        foreach(var shape in shapes)
+        {
+            shape.Transform(transform);
+        }
 
         var lighting = new List<ILighting>
         {
