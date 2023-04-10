@@ -1,6 +1,6 @@
 ﻿namespace RenderEngine.Transformer
 {
-    public class Matrix
+    public static class Matrix
     {
         public static float[,] Multiply(float[,] matrix1, float[,] matrix2)
         {

@@ -4,7 +4,7 @@ namespace RenderEngine.Transformer
 {
     public class Transform
     {
-        public static float[,] IdentityMatrix { get; } = new float[,]
+        public readonly static float[,] IdentityMatrix = new float[,]
             {
                 { 1, 0, 0, 0 },
                 { 0, 1, 0, 0 },

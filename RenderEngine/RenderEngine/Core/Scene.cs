@@ -14,18 +14,4 @@ public class Scene
         Shapes = shapes;
         Lighting = lighting;
     }
-
-    public void Transform(Transform transform)
-    {
-        foreach(var shape in Shapes)
-        {
-            shape.Transform(transform);
-        }
-
-        foreach (var light in Lighting)
-        {
-            light.Transform(transform);
-        }
-
-    }
 }
