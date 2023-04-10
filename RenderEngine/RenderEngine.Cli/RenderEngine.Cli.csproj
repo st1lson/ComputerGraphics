@@ -5,16 +5,25 @@
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+	<PackAsTool>true</PackAsTool>
+	<ToolCommandName>render-engine</ToolCommandName>
+	<PackageOutputPath>./nupkg</PackageOutputPath>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="CommandLineParser" Version="2.9.1" />
+<<<<<<< HEAD:RenderEngine/RenderEngine.ImageConverter.CLI/RenderEngine.ImageConverter.CLI.csproj
+    <PackageReference Include="SharpZipLib" Version="1.4.2" />
+=======
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+>>>>>>> development:RenderEngine/RenderEngine.Cli/RenderEngine.Cli.csproj
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\RenderEngine.ImageConverter\RenderEngine.ImageConverter.csproj" />
     <ProjectReference Include="..\RenderEngine\RenderEngine.csproj" />
   </ItemGroup>
 

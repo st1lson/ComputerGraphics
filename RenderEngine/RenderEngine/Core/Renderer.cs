@@ -1,5 +1,8 @@
 ﻿using RenderEngine.Basic;
 using RenderEngine.Interfaces;
+using RenderEngine.Models;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace RenderEngine.Core;
 
@@ -15,9 +18,9 @@ public class Renderer
         Scene = scene;
     }
 
-    public float[,] Render()
+    public Bitmap Render()
     {
-        float[,] screen = new float[Camera.PixelHeight, Camera.PixelWidth];
+        var bitmap = new Bitmap(Camera.PixelHeight, Camera.PixelWidth);
 
         var verticalFovInRadians = Camera.VerticalFOV * (Math.PI / 180);
 
@@ -34,7 +37,9 @@ public class Renderer
         Vector3 screenCenter = Camera.Orig + Camera.Dir * Camera.FocalLength;
         Vector3 screenOrig = screenCenter + up * Camera.PixelHeight / 2 - right * Camera.PixelWidth / 2;
 
-        for (int i = 0; i < Camera.PixelHeight; i++)
+
+
+        Parallel.For(0, Camera.PixelHeight, new ParallelOptions { MaxDegreeOfParallelism = 4 }, (i) =>
         {
             for (int j = 0; j < Camera.PixelWidth; j++)
             {
@@ -63,19 +68,17 @@ public class Renderer
 
                 if (intersectionPoint == null)
                 {
-                    screen[i, j] = 0;
+                    bitmap[(int)i, j] = new Pixel(0);
                     continue;
                 }
 
-                if (Scene.Lighting.Count == 0)
+                foreach (var lightning in Scene.Lighting)
                 {
-                    continue;
+                    bitmap[(int)i, j] += lightning.GetLight(saveShape!, Scene.Shapes, intersectionPoint.Value, Camera.Orig);
                 }
-
-                screen[i, j] = Scene.Lighting.First().GetLight(saveShape!, intersectionPoint.Value);
             }
-        }
+        });
 
-        return screen;
+        return bitmap;
     }
 }

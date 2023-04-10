@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RenderEngine", "RenderEngin
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RenderEngine.Tests", "RenderEngine.Tests\RenderEngine.Tests.csproj", "{6D7EBDCD-C47D-42DF-8E73-E3522CE16BCC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RenderEngine.Console", "RenderEngine.Console\RenderEngine.Console.csproj", "{4FF77203-DDAA-49C3-ABC2-203BE3B5A769}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RenderEngine.Cli", "RenderEngine.Cli\RenderEngine.Cli.csproj", "{4FF77203-DDAA-49C3-ABC2-203BE3B5A769}"
 	ProjectSection(ProjectDependencies) = postProject
 		{F768734E-CC99-4ADF-AA6E-1F62E20BC2DB} = {F768734E-CC99-4ADF-AA6E-1F62E20BC2DB}
 	EndProjectSection
@@ -30,6 +30,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Writers", "Writers", "{8D15
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BmpReader", "Plugins\Readers\BmpReader\BmpReader.csproj", "{13B6B623-E91C-40EC-8B4D-B8339D1CFACA}"
 EndProject
+<<<<<<< HEAD
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RenderEngine.ImageConverter.CLI", "RenderEngine.ImageConverter.CLI\RenderEngine.ImageConverter.CLI.csproj", "{55E97872-EF07-4EF2-AD2B-A086933FD9E1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BmpWriter", "Plugins\Writers\BmpWriter\BmpWriter.csproj", "{D323C744-02F3-4272-AA70-7DD270004E49}"
@@ -37,6 +38,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PngReader", "Plugins\Readers\PngReader\PngReader.csproj", "{828DB7E6-2155-4E03-BF5A-1BF41201C681}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PngWriter", "Plugins\Writers\PngWriter\PngWriter.csproj", "{4C5623BD-575D-40FA-A91A-B6363C554D03}"
+=======
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BmpWriter", "Plugins\Writers\BmpWriter\BmpWriter.csproj", "{D323C744-02F3-4272-AA70-7DD270004E49}"
+>>>>>>> development
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -64,10 +68,6 @@ Global
 		{13B6B623-E91C-40EC-8B4D-B8339D1CFACA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13B6B623-E91C-40EC-8B4D-B8339D1CFACA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{13B6B623-E91C-40EC-8B4D-B8339D1CFACA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{55E97872-EF07-4EF2-AD2B-A086933FD9E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{55E97872-EF07-4EF2-AD2B-A086933FD9E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{55E97872-EF07-4EF2-AD2B-A086933FD9E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{55E97872-EF07-4EF2-AD2B-A086933FD9E1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D323C744-02F3-4272-AA70-7DD270004E49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D323C744-02F3-4272-AA70-7DD270004E49}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D323C744-02F3-4272-AA70-7DD270004E49}.Release|Any CPU.ActiveCfg = Release|Any CPU

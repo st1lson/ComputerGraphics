@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "RenderEngine.ImageConverter.CLI": {
+    "RenderEngine.Cli": {
       "commandName": "Project",
       "commandLineArgs": "render -s D:\\car.obj -d D:\\car.bmp"
     }
