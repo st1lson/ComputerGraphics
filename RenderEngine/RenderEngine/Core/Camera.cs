@@ -1,12 +1,13 @@
 ﻿using RenderEngine.Basic;
+using RenderEngine.Transformer;
 
 namespace RenderEngine.Core;
 
 public class Camera
 {
-    public Vector3 Orig { get; init; }
+    public Vector3 Orig { get; set; }
 
-    public Vector3 Dir { get; init; }
+    public Vector3 Dir { get; set; }
 
     public uint PixelWidth { get; init; }
 

@@ -1,10 +1,21 @@
 ﻿using RenderEngine.Basic;
 using RenderEngine.Interfaces;
+using RenderEngine.Transformer;
 
 namespace RenderEngine.Shapes;
 
-public record Sphere(Vector3 Orig, float Radius) : IShape
+public class Sphere : IShape
 {
+    public Vector3 Orig { get; private set; }
+
+    public float Radius { get; private set; }
+
+    public Sphere(Vector3 orig, float radius)
+    {
+        Orig = orig;
+        Radius = radius;
+    }
+
     public Vector3? Intersects(Ray ray)
     {
         var k = ray.Orig - Orig;
@@ -34,5 +45,14 @@ public record Sphere(Vector3 Orig, float Radius) : IShape
     public Vector3 GetNormal(Vector3 intersectionPoint)
     {
         return intersectionPoint - Orig;
+    }
+
+    public void Transform(Transform transform)
+    {
+        Vector3 vectorRadius = Orig.Normalize() * Radius;
+        vectorRadius = vectorRadius.TransformAsDirection(transform);
+
+        Radius = vectorRadius.Abs();
+        Orig = Orig.Transform(transform);
     }
 }

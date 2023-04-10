@@ -1,10 +1,24 @@
 ﻿using RenderEngine.Interfaces;
 using RenderEngine.Basic;
+using RenderEngine.Transformer;
 
 namespace RenderEngine.Shapes;
 
-public record Disk(Vector3 Orig, float Radius, Vector3 Normal) : IShape
+public class Disk : IShape
 {
+    public Vector3 Orig { get; private set; }
+
+    public float Radius { get; private set; }
+
+    public Vector3 Normal { get; private set;}
+
+    public Disk(Vector3 orig, float radius, Vector3 normal)
+    {
+        Orig = orig;
+        Radius = radius;
+        Normal = normal;
+    }
+
     public Vector3? Intersects(Ray ray)
     {
         const float tolerance = 1e-6f;
@@ -39,5 +53,18 @@ public record Disk(Vector3 Orig, float Radius, Vector3 Normal) : IShape
     public Vector3 GetNormal(Vector3 intersectionPoint)
     {
         return Normal;
+    }
+
+    public void Transform(Transform transform)
+    {
+
+        float D = -(Normal.X * Orig.X + Normal.Y * Orig.Y + Normal.Z * Orig.Z);
+        float z = -(Normal.X + Normal.Y + D) / Normal.Z;
+        Vector3 vectorRadius = new Vector3(1, 1, z).Normalize()*Radius;
+        vectorRadius = vectorRadius.TransformAsDirection(transform);
+
+        Radius = vectorRadius.Abs();
+        Normal = Normal.TransformAsDirection(transform);
+        Orig = Orig.Transform(transform);
     }
 }

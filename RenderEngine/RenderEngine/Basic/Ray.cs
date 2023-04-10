@@ -1,4 +1,6 @@
-﻿namespace RenderEngine.Basic;
+﻿using RenderEngine.Transformer;
+
+namespace RenderEngine.Basic;
 
 public readonly struct Ray
 {
@@ -15,6 +17,11 @@ public readonly struct Ray
     public Vector3 GetPoint(float t) 
     {
         return Orig + Dir * t;
+    }
+
+    public Ray Transform(Transform transform)
+    {
+        return new Ray(Orig.Transform(transform), Dir.TransformAsDirection(transform));
     }
 
     public override string ToString()
