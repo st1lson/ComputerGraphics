@@ -4,7 +4,7 @@ using RenderEngine.Models;
 
 namespace BmpWriter
 {
-    public class BmpReader : IImageWriter
+    public class BmpWriter : IImageWriter
     {
         public void Write(Bitmap bitmap, string path)
         {
