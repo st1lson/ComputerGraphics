@@ -3,7 +3,7 @@
 public class SphereTests
 {
     [Fact]
-    public void Sphere_Intersaction_Correct()
+    public void Sphere_Intersection_Correct()
     {
         // Arrange
         var sphere = new Sphere(new Vector3(0, 5, 0), 2);
@@ -20,7 +20,7 @@ public class SphereTests
     }
 
     [Fact]
-    public void Sphere_IntersactionInsideSphere_Correct()
+    public void Sphere_IntersectionInsideSphere_Correct()
     {
         // Arrange
         var sphere = new Sphere(new Vector3(0, 5, 0), 2);
@@ -37,7 +37,7 @@ public class SphereTests
     }
 
     [Fact]
-    public void Sphere_NotIntersactsRay()
+    public void Sphere_NotIntersectsRay()
     {
         // Arrange
         var sphere = new Sphere(new Vector3(0, 5, 0), 2);
@@ -54,7 +54,7 @@ public class SphereTests
     }
 
     [Fact]
-    public void Sphere_IntersactsBehindRay()
+    public void Sphere_IntersectsBehindRay()
     {
         // Arrange
         var sphere = new Sphere(new Vector3(0, 5, 0), 2);

@@ -4,7 +4,7 @@ using RenderEngine.Models;
 
 namespace RenderEngine.Cli.IO.Writers;
 
-internal class ImageWriter
+internal sealed class ImageWriter
 {
     public void Write(Bitmap bitmap, RenderCommand command)
     {
