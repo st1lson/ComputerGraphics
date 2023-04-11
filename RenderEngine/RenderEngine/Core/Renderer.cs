@@ -1,8 +1,6 @@
 ﻿using RenderEngine.Basic;
 using RenderEngine.Interfaces;
 using RenderEngine.Models;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace RenderEngine.Core;
 
@@ -36,8 +34,6 @@ public class Renderer
 
         Vector3 screenCenter = Camera.Orig + Camera.Dir * Camera.FocalLength;
         Vector3 screenOrig = screenCenter + up * Camera.PixelHeight / 2 - right * Camera.PixelWidth / 2;
-
-
 
         Parallel.For(0, Camera.PixelHeight, new ParallelOptions { MaxDegreeOfParallelism = 4 }, (i) =>
         {

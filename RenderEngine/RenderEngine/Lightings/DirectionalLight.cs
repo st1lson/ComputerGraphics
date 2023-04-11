@@ -1,5 +1,4 @@
 ﻿using RenderEngine.Basic;
-using RenderEngine.Core;
 using RenderEngine.Interfaces;
 using RenderEngine.Models;
 using RenderEngine.Transformer;
@@ -53,9 +52,9 @@ public class DirectionalLight : ILighting
             }
         }
 
-        var coef = isShadowed ? 0 : Math.Max(Vector3.Dot(normal, LightDir), 0);
+        var coefficient = isShadowed ? 0 : Math.Max(Vector3.Dot(normal, LightDir), 0);
 
-        return Color * new Vector3(coef);
+        return Color * new Vector3(coefficient);
     }
 
     public void Transform(Transform transform)

@@ -9,6 +9,7 @@ public class Triangle : IShape
     public Vector3 V0 { get; private set; }
 
     public Vector3 V1 { get; private set; }
+
     public Vector3 V2 { get; private set; }
 
     public Triangle(Vector3 v0, Vector3 v1, Vector3 v2)
@@ -17,6 +18,7 @@ public class Triangle : IShape
         V1 = v1;
         V2 = v2;
     }
+
     public Vector3? Intersects(Ray ray)
     {
         const double tolerance = 1e-5d;
