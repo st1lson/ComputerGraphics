@@ -3,7 +3,7 @@
 public class DiskTests
 {
     [Fact]
-    public void Disk_Intersaction_Correct()
+    public void Disk_Intersection_Correct()
     {
         // Arrange
         var disk = new Disk(new Vector3(4, 4, 0), 2, new Vector3(0, 0, 1));
@@ -20,7 +20,7 @@ public class DiskTests
     }
 
     [Fact]
-    public void Disk_Intersaction_On_Border_Correct()
+    public void Disk_Intersection_On_Border_Correct()
     {
         // Arrange
         var disk = new Disk(new Vector3(4, 4, 0), 2, new Vector3(0, 0, 1));
@@ -37,7 +37,7 @@ public class DiskTests
     }
 
     [Fact]
-    public void Disk_NotIntersactsRay()
+    public void Disk_NotIntersectsRay()
     {
         // Arrange
         var disk = new Disk(new Vector3(4, 4, 0), 2, new Vector3(0, 0, 1));

@@ -57,7 +57,6 @@ public class Disk : IShape
 
     public void Transform(Transform transform)
     {
-
         float D = -(Normal.X * Orig.X + Normal.Y * Orig.Y + Normal.Z * Orig.Z);
         float z = -(Normal.X + Normal.Y + D) / Normal.Z;
         Vector3 vectorRadius = new Vector3(1, 1, z).Normalize()*Radius;

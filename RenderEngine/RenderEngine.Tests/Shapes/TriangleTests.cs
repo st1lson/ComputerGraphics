@@ -3,7 +3,7 @@
 public class TriangleTests
 {
     [Fact]
-    public void Triangle_Intersaction_On_Border_Correct()
+    public void Triangle_Intersection_On_Border_Correct()
     {
         // Arrange
         var triangle = new Triangle(new Vector3(2, 4, 0), new Vector3(4, 2, 0), new Vector3(4, 4, 0));
@@ -20,7 +20,7 @@ public class TriangleTests
     }
 
     [Fact]
-    public void Triangle_Intersaction_Correct()
+    public void Triangle_Intersection_Correct()
     {
         // Arrange
         var triangle = new Triangle(new Vector3(2, 3, 0), new Vector3(4, 2, 0), new Vector3(4, 4, 0));
@@ -37,7 +37,7 @@ public class TriangleTests
     }
 
     [Fact]
-    public void Triangle_NotIntersactsRay()
+    public void Triangle_NotIntersectsRay()
     {
         // Arrange
         var triangle = new Triangle(new Vector3(2, 4, 0), new Vector3(4, 2, 0), new Vector3(4, 4, 0));

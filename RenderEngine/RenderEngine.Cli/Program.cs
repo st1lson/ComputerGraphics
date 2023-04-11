@@ -7,8 +7,6 @@ using RenderEngine.Core;
 using RenderEngine.ImageConverter.Factories;
 using RenderEngine.Interfaces;
 using RenderEngine.Lightings;
-using RenderEngine.Models;
-using RenderEngine.Shapes;
 using RenderEngine.Transformer;
 
 namespace RenderEngine.Cli;
@@ -50,6 +48,7 @@ internal class Program
         var lighting = new List<ILighting>
         {
             new DirectionalLight(new Vector3(0, -1, 0)),
+
             //new DirectionalLight(new Vector3(1, -1, 0), new Pixel(255, 0, 0)),
             //new DirectionalLight(new Vector3(-1, -1, 0), new Pixel(0, 0, 255))
         };

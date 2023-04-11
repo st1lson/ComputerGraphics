@@ -73,7 +73,7 @@ public readonly struct Vector3
 
     public Vector3 Transform(Transform transform)
     {
-        float[,] vectorMatrix = new float[,]{ {X}, { Y }, { Z }, { 1 } };
+        float[,] vectorMatrix = { { X }, { Y }, { Z }, { 1 } };
         var transformVector = Matrix.Multiply(transform.MatrixTransform, vectorMatrix);
 
         return new Vector3(transformVector[0,0], transformVector[1, 0] , transformVector[2, 0] );
@@ -81,7 +81,7 @@ public readonly struct Vector3
 
     public Vector3 TransformAsDirection(Transform transform)
     {
-        float[,] vectorMatrix = new float[,] { { X }, { Y }, { Z }, { 0 } };
+        float[,] vectorMatrix = { { X }, { Y }, { Z }, { 0 } };
         var transformVector = Matrix.Multiply(transform.MatrixTransform, vectorMatrix);
 
         return new Vector3(transformVector[0, 0], transformVector[1, 0], transformVector[2, 0]);
