@@ -1,10 +1,9 @@
-﻿namespace RenderEngine.ImageConverter.Models.Png
+﻿namespace RenderEngine.ImageConverter.Models.Png;
+
+public readonly struct IHDR
 {
-    public readonly struct IHDR
-    {
-        public byte[] ChunkLength { get; init; }
-        public byte[] ChunkName { get; init; }
-        public IHDRData IHDRData { get; init; }
-        public byte[] CRC { get; init; }
-    }
+    public byte[] ChunkLength { get; init; }
+    public byte[] ChunkName { get; init; }
+    public IHDRData IHDRData { get; init; }
+    public byte[] CRC { get; init; }
 }
