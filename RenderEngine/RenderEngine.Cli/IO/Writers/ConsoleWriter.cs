@@ -1,10 +1,11 @@
-﻿using RenderEngine.Models;
+﻿using RenderEngine.Cli.CommandLineCommands;
+using RenderEngine.Models;
 
 namespace RenderEngine.Cli.IO.Writers;
 
-internal sealed class ConsoleWriter
+internal sealed class ConsoleWriter : IWriter
 {
-    public void Serialize(Bitmap bitmap)
+    public void Write(Bitmap bitmap, RenderCommand? command = null)
     {
         for (int i = 0; i < bitmap.GetLength(0); i++)
         {
