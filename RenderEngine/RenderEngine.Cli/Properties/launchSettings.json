@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "RenderEngine.Cli": {
+      "commandName": "Project",
+      "commandLineArgs": "render -s E:\\\\cow.obj -d E:\\cowCheckpng.png"
+    }
+  }
+}
