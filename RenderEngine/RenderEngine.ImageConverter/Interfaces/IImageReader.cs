@@ -4,5 +4,5 @@ namespace RenderEngine.ImageConverter.Interfaces;
 
 public interface IImageReader : IPlugin
 {
-    Bitmap Read(string path);
+    Bitmap Read(Stream source);
 }

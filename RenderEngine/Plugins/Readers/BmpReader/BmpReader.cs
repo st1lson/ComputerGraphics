@@ -8,9 +8,9 @@ public class BmpReader : IImageReader
 {
     public BmpHeader Header { get; private set; }
 
-    public Bitmap Read(string filePath)
+    public Bitmap Read(Stream source)
     {
-        using BinaryReader reader = new BinaryReader(File.Open(filePath, FileMode.Open));
+        using BinaryReader reader = new BinaryReader(source);
 
         Header = new BmpHeader
         {
@@ -47,5 +47,19 @@ public class BmpReader : IImageReader
         }
 
         return bitmap;
+    }
+
+    private static void Validate(BmpHeader header)
+    {
+        if (header.Signature != 0x4D42)
+            throw new ArgumentException("The file signature doesn't match the BMP signature.");
+        if (header.Reserved != 0)
+            throw new InvalidOperationException("Bad BMP format");
+        if (header.Planes != 1)
+            throw new InvalidOperationException("Bad BMP format");
+        if (header.BitsPerPixel != 24)
+            throw new InvalidOperationException("Only 24bit BMPs are supported");
+        if (header.Compression != 0)
+            throw new InvalidOperationException("Only BMPs without compression are supported");
     }
 }
