@@ -8,7 +8,7 @@ public class PngReader : IImageReader
 {
     public PngHeader Header => default;
 
-    public Bitmap Read(string filePath)
+    public Bitmap Read(Stream source)
     {
         throw new NotImplementedException();
     }

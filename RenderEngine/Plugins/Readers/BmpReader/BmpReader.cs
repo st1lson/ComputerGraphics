@@ -31,6 +31,8 @@ public class BmpReader : IImageReader
             ColorsImportant = reader.ReadUInt32()
         };
 
+        Validate(Header);
+
         int rowPadding = 3 - ((int)Header.Width * 3 - 1) % 4;
         int colorTableSize = (int)(Header.DataOffset + (Header.BitsPerPixel <= 8 ? (1 << Header.BitsPerPixel) * 4 : 0) - 54);
         reader.ReadBytes(colorTableSize);
