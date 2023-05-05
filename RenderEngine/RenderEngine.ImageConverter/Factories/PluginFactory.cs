@@ -33,22 +33,26 @@ public sealed class PluginFactory
             .ToList();
     }
 
-    public IImageReader GetImageReader(ImageFormat format)
+    public IImageReader GetImageReader(Stream stream)
     {
-        if (format == ImageFormat.Unknown)
-            throw new ReaderNotFoundException();
+        //if (format == ImageFormat.Unknown)
+        //    throw new ReaderNotFoundException();
 
         foreach (var pluginAssembly in _pluginAssemblies)
         {
-            if (!pluginAssembly.FullName!.StartsWith(format.ToString()))
-                continue;
+            //if (!pluginAssembly.FullName!.StartsWith(format.ToString()))
+            //    continue;
 
             foreach (var type in pluginAssembly.GetTypes())
             {
                 if (!typeof(IImageReader).IsAssignableFrom(type))
                     continue;
 
-                return (IImageReader)Activator.CreateInstance(type)!;
+                var instance = (IImageReader)Activator.CreateInstance(type)!;
+
+                if (!instance.Validate(stream)) continue;
+
+                return instance;
             }
         }
 
