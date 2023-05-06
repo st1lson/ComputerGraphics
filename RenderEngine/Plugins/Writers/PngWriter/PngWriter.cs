@@ -10,6 +10,7 @@ public class PngWriter : IImageWriter
 {
     const string NameOfChunkIhdr = "IHDR";
     const string NameOfChunkIdat = "IDAT";
+    public string Format => "png";
     public void Write(Bitmap bitmap, string path)
     {
         IHDRData ihdrData = new()
