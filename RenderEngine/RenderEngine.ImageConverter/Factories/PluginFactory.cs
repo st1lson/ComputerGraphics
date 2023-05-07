@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using RenderEngine.ImageConverter.Enums;
 using RenderEngine.ImageConverter.Exceptions;
 using RenderEngine.ImageConverter.Interfaces;
 

@@ -1,5 +1,5 @@
-﻿using RenderEngine.ImageConverter.Interfaces;
-using RenderEngine.ImageConverter.Models.Bmp;
+﻿using Bmp.Common;
+using RenderEngine.ImageConverter.Interfaces;
 using RenderEngine.Models;
 
 namespace BmpReader;
@@ -33,9 +33,9 @@ public class BmpReader : IImageReader
 
     private static BmpHeader ReadHeader(Stream stream)
     {
-        using BinaryReader reader = new BinaryReader(stream);
+        BinaryReader reader = new BinaryReader(stream);
 
-        return new BmpHeader
+        var header =  new BmpHeader
         {
             Signature = reader.ReadUInt16(),
             FileSize = reader.ReadUInt32(),
@@ -53,6 +53,7 @@ public class BmpReader : IImageReader
             ColorsUsed = reader.ReadUInt32(),
             ColorsImportant = reader.ReadUInt32()
         };
+        return header;
     }
 
     public bool Validate(Stream stream)
@@ -73,10 +74,15 @@ public class BmpReader : IImageReader
                 throw new InvalidOperationException("Only BMPs without compression are supported");
 
             return true;
-        } catch (Exception ex)
+        }
+        catch (Exception ex)
         {
             Console.WriteLine(ex.Message);
             return false;
+        }
+        finally
+        {
+            stream.Seek(0, SeekOrigin.Begin);
         }
     }
 }

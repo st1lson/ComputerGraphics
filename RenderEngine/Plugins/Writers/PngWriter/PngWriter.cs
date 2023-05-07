@@ -1,8 +1,8 @@
 ﻿using RenderEngine.ImageConverter.Interfaces;
-using RenderEngine.ImageConverter.Models.Png;
 using System.Text;
 using ICSharpCode.SharpZipLib.Zip.Compression.Streams;
 using RenderEngine.Models;
+using PngCommon;
 
 namespace PngWriter;
 

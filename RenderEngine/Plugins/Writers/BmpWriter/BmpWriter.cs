@@ -1,5 +1,5 @@
-﻿using RenderEngine.ImageConverter.Interfaces;
-using RenderEngine.ImageConverter.Models.Bmp;
+﻿using Bmp.Common;
+using RenderEngine.ImageConverter.Interfaces;
 using RenderEngine.Models;
 
 namespace BmpWriter;

@@ -1,4 +1,4 @@
-﻿namespace RenderEngine.ImageConverter.Models.Png;
+﻿namespace PngCommon;
 
 public readonly struct IDAT
 {

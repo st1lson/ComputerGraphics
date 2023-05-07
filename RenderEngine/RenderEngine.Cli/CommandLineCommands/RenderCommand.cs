@@ -1,6 +1,4 @@
 ﻿using CommandLine;
-using RenderEngine.Cli.Helpers;
-using RenderEngine.ImageConverter.Enums;
 
 namespace RenderEngine.Cli.CommandLineCommands;
 

@@ -2,7 +2,7 @@
   "profiles": {
     "RenderEngine.Cli": {
       "commandName": "Project",
-      "commandLineArgs": "convert -s D:\\\\avif.bmp -d D:\\\\cowPng1.png"
+      "commandLineArgs": "convert -s D:\\\\cow.bmp -d D:\\\\cowPng1.bmp"
     }
   }
 }

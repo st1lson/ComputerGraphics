@@ -1,5 +1,5 @@
-﻿using RenderEngine.ImageConverter.Interfaces;
-using RenderEngine.ImageConverter.Models.Png;
+﻿using PngCommon;
+using RenderEngine.ImageConverter.Interfaces;
 using RenderEngine.Models;
 
 namespace PngReader;
