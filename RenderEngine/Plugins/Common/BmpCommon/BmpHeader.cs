@@ -1,4 +1,4 @@
-﻿namespace Bmp.Common;
+﻿namespace BmpCommon;
 
 public struct BmpHeader
 {

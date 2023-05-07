@@ -1,4 +1,4 @@
-﻿using Bmp.Common;
+﻿using BmpCommon;
 using RenderEngine.ImageConverter.Interfaces;
 using RenderEngine.Models;
 
