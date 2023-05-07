@@ -10,10 +10,10 @@ internal sealed class ConvertCommand
     [Option('s', "source", Required = true, HelpText = "A path to the source file")]
     public string SourceFile { get; set; } = null!;
 
-    public ImageFormat SourceFormat => EnumHelper.StringToEnum(Path.GetExtension(SourceFile));
+    public string SourceFormat => Path.GetExtension(SourceFile);
 
     [Option('d', "destination", Required = true, HelpText = "A path to the destination file")]
     public string OutputFile { get; set; } = null!;
 
-    public ImageFormat OutputFormat => EnumHelper.StringToEnum(Path.GetExtension(OutputFile));
+    public string OutputFormat => Path.GetExtension(OutputFile);
 }

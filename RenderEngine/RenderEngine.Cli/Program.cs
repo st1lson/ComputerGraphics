@@ -70,7 +70,7 @@ internal class Program
         using var stream = File.Open(command.SourceFile, FileMode.Open);
         var reader = pluginFactory.GetImageReader(stream);
 
-        var bitmap = reader.Read(File.Open(command.SourceFile, FileMode.Open));
+        var bitmap = reader.Read(stream);
 
         var writer = pluginFactory.GetImageWriter(command.OutputFormat);
 

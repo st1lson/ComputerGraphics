@@ -35,14 +35,8 @@ public sealed class PluginFactory
 
     public IImageReader GetImageReader(Stream stream)
     {
-        //if (format == ImageFormat.Unknown)
-        //    throw new ReaderNotFoundException();
-
         foreach (var pluginAssembly in _pluginAssemblies)
         {
-            //if (!pluginAssembly.FullName!.StartsWith(format.ToString()))
-            //    continue;
-
             foreach (var type in pluginAssembly.GetTypes())
             {
                 if (!typeof(IImageReader).IsAssignableFrom(type))
@@ -56,28 +50,26 @@ public sealed class PluginFactory
             }
         }
 
-        throw new PluginNotFoundExceptions();
+        throw new ReaderNotFoundException();
     }
 
-    public IImageWriter GetImageWriter(ImageFormat format)
+    public IImageWriter GetImageWriter(string format)
     {
-        if (format == ImageFormat.Unknown)
-            throw new WriterNotFoundException();
-
         foreach (var pluginAssembly in _pluginAssemblies)
         {
-            if (!pluginAssembly.FullName!.StartsWith(format.ToString()))
-                continue;
-
             foreach (var type in pluginAssembly.GetTypes())
             {
                 if (!typeof(IImageWriter).IsAssignableFrom(type)) continue;
 
-                return (IImageWriter)Activator.CreateInstance(type)!;
+                var instance = (IImageWriter)Activator.CreateInstance(type)!;
+                if (!instance.Format.Equals(format, StringComparison.InvariantCultureIgnoreCase))
+                    continue;
+
+                return instance;
             }
         }
 
-        throw new PluginNotFoundExceptions();
+        throw new WriterNotFoundException();
     }
 
     private static string AddExtension(string file)

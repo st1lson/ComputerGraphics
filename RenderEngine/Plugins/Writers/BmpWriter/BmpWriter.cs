@@ -6,7 +6,8 @@ namespace BmpWriter;
 
 public class BmpWriter : IImageWriter
 {
-    public string Format => "bmp";
+    public string Format => ".bmp";
+
     public void Write(Bitmap bitmap, string path)
     {
         uint rowPadding = 3 - (bitmap.Width * 3 - 1) % 4;
