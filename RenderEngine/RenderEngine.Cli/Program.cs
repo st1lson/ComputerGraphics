@@ -67,9 +67,10 @@ internal class Program
     {
         var pluginFactory = new PluginFactory();
 
-        var reader = pluginFactory.GetImageReader(command.SourceFormat);
+        using var stream = File.Open(command.SourceFile, FileMode.Open);
+        var reader = pluginFactory.GetImageReader(stream);
 
-        var bitmap = reader.Read(command.SourceFile);
+        var bitmap = reader.Read(stream);
 
         var writer = pluginFactory.GetImageWriter(command.OutputFormat);
 

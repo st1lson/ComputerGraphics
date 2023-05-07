@@ -1,5 +1,4 @@
-﻿namespace RenderEngine.ImageConverter.Models.Png;
-
+﻿namespace PngCommon;
 public readonly struct IHDR
 {
     public byte[] ChunkLength { get; init; }

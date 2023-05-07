@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\RenderEngine.ImageConverter\RenderEngine.ImageConverter.csproj" />
+    <ProjectReference Include="..\..\Common\PngCommon\PngCommon.csproj" />
   </ItemGroup>
 
 </Project>

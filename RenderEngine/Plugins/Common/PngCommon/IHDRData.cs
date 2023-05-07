@@ -1,5 +1,4 @@
-﻿namespace RenderEngine.ImageConverter.Models.Png;
-
+﻿namespace PngCommon;
 public readonly struct IHDRData
 {
     public byte[] Width { get; init; }

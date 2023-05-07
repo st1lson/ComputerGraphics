@@ -1,6 +1,4 @@
 ﻿using CommandLine;
-using RenderEngine.Cli.Helpers;
-using RenderEngine.ImageConverter.Enums;
 
 namespace RenderEngine.Cli.CommandLineCommands;
 
@@ -13,5 +11,5 @@ internal sealed class RenderCommand
     [Option('d', "destination", Required = true, HelpText = "A path to the destination file")]
     public string OutputFile { get; set; } = null!;
 
-    public ImageFormat OutputFormat => EnumHelper.StringToEnum(Path.GetExtension(OutputFile));
+    public string OutputFormat => Path.GetExtension(OutputFile);
 }
