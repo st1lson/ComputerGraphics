@@ -65,17 +65,24 @@ internal class Program
 
     private static int Convert(ConvertCommand command)
     {
-        var pluginFactory = new PluginFactory();
+        try
+        {
+            var pluginFactory = new PluginFactory();
 
-        using var stream = File.Open(command.SourceFile, FileMode.Open);
-        var reader = pluginFactory.GetImageReader(stream);
+            using var stream = File.Open(command.SourceFile, FileMode.Open);
+            var reader = pluginFactory.GetImageReader(stream);
 
-        var bitmap = reader.Read(stream);
+            var bitmap = reader.Read(stream);
 
-        var writer = pluginFactory.GetImageWriter(command.OutputFormat);
+            var writer = pluginFactory.GetImageWriter(command.OutputFormat);
 
-        writer.Write(bitmap, command.OutputFile);
-
-        return 0;
+            writer.Write(bitmap, command.OutputFile);
+            return 0;
+        }
+        catch(Exception e)
+        {
+            Console.WriteLine(e.Message);
+            return 1;
+        }
     }
 }
