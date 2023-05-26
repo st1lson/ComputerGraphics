@@ -7,6 +7,7 @@ using RenderEngine.Core;
 using RenderEngine.ImageConverter.Factories;
 using RenderEngine.Interfaces;
 using RenderEngine.Lightings;
+using RenderEngine.Models;
 using RenderEngine.Transformer;
 
 namespace RenderEngine.Cli;
@@ -38,7 +39,7 @@ internal class Program
 
         List<IShape> shapes = new ObjReader().Read(command.SourceFile);
 
-        Transform transform = new Transform(Transform.IdentityMatrix).Translate(new Vector3(0.5f, 0, 0));
+        Transform transform = new Transform(Transform.IdentityMatrix).Translate(new Vector3(0f, 0, 0));
 
         foreach(var shape in shapes)
         {
@@ -47,7 +48,10 @@ internal class Program
 
         var lighting = new List<ILighting>
         {
-            new DirectionalLight(new Vector3(0, -1, 0)),
+            //new DirectionalLight(new Vector3(0, -1, 0)),
+            new PointLight(new Vector3(0, 1, 0)),
+            //new PointLight(new Vector3(0, 1, 0), new Pixel(255, 255, 255), 0.5f),
+            //new AmbientLight(new Pixel(255, 0, 0), 0.1f)
 
             //new DirectionalLight(new Vector3(1, -1, 0), new Pixel(255, 0, 0)),
             //new DirectionalLight(new Vector3(-1, -1, 0), new Pixel(0, 0, 255))
