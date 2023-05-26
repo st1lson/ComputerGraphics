@@ -95,6 +95,14 @@ public readonly struct Vector3
             left.X * right.Y - left.Y * right.X);
     }
 
+    public static Vector3 Clamp(Vector3 vec, Vector3 min, Vector3 max)
+    {
+        return new Vector3(
+            Math.Min(Math.Max(vec.X, min.X), max.X),
+            Math.Min(Math.Max(vec.Y, min.Y), max.Y),
+            Math.Min(Math.Max(vec.Z, min.Z), max.Z));
+    }
+
     public bool Equals(Vector3 vector)
     {
         return this == vector;
