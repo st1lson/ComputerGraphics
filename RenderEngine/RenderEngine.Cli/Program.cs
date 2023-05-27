@@ -49,7 +49,8 @@ internal class Program
         var lighting = new List<ILighting>
         {
             //new DirectionalLight(new Vector3(0, -1, 0)),
-            new PointLight(new Vector3(1, 1, 1)),
+            //new AmbientLight(new Pixel(255), 0.1f),
+            new PointLight(new Vector3(0, 1, 0)),
             //new PointLight(new Vector3(0, 1, 0), new Pixel(255, 255, 255), 0.5f),
             //new AmbientLight(new Pixel(255, 0, 0), 0.1f)
 

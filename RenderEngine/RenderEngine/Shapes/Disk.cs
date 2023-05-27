@@ -16,7 +16,7 @@ public class Disk : IShape
     {
         Orig = orig;
         Radius = radius;
-        Normal = normal;
+        Normal = normal.Normalize();
     }
 
     public Vector3? Intersects(Ray ray)
@@ -51,6 +51,11 @@ public class Disk : IShape
     }
 
     public Vector3 GetNormal(Vector3 intersectionPoint)
+    {
+        return Normal;
+    }
+
+    public Vector3 GetInterpolatedNormal(Vector3 intersectionPoint)
     {
         return Normal;
     }

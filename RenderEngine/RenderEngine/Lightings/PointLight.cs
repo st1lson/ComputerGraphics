@@ -21,7 +21,7 @@ namespace RenderEngine.Lightings
 
         private Vector3 specularCoef = new Vector3(0.5f);
 
-        private float shininess = 2;
+        private float shininess = 32;
 
         public PointLight(Vector3 posLight)
         {
@@ -48,7 +48,7 @@ namespace RenderEngine.Lightings
 
         public Pixel GetLight(IShape shape, IReadOnlyList<IShape> shapes, Vector3 intersectionPoint, Vector3 cameraPos)
         {
-            Vector3 normal = shape.GetNormal(intersectionPoint).Normalize();
+            Vector3 normal = shape.GetInterpolatedNormal(intersectionPoint).Normalize();
             Vector3 lightDir = (LightPos - intersectionPoint).Normalize();
             Vector3 viewVector = (cameraPos - intersectionPoint).Normalize();
             float cosA = Vector3.Dot(normal, lightDir);

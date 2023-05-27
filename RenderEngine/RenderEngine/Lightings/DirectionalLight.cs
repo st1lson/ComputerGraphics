@@ -29,7 +29,7 @@ public class DirectionalLight : ILighting
 
     public Pixel GetLight(IShape shape, IReadOnlyList<IShape> shapes, Vector3 intersectionPoint, Vector3 cameraPos)
     {
-        Vector3 normal = shape.GetNormal(intersectionPoint).Normalize();
+        Vector3 normal = shape.GetInterpolatedNormal(intersectionPoint);
         float cosA = Vector3.Dot(normal, LightDir);
         float cosB = Vector3.Dot(normal, cameraPos - intersectionPoint);
 
