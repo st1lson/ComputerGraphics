@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\RenderEngine.DependencyInjection\RenderEngine.DependencyInjection.csproj" />
     <ProjectReference Include="..\RenderEngine.ImageConverter\RenderEngine.ImageConverter.csproj" />
     <ProjectReference Include="..\RenderEngine\RenderEngine.csproj" />
   </ItemGroup>
