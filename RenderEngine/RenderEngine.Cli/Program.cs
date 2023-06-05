@@ -4,6 +4,7 @@ using RenderEngine.Cli.CommandLineCommands;
 using RenderEngine.Cli.IO.Readers;
 using RenderEngine.Cli.IO.Writers;
 using RenderEngine.Core;
+using RenderEngine.DependencyInjection;
 using RenderEngine.ImageConverter.Factories;
 using RenderEngine.Interfaces;
 using RenderEngine.Lightings;
@@ -27,38 +28,16 @@ internal class Program
 
     private static int Render(RenderCommand command)
     {
-        Camera camera = new Camera(
-            new Vector3(0, 1, 0),
-            new Vector3(0, -1, 0),
-            200,
-            200,
-            1,
-            30
-        );
+        var builder = new ContainerBuilder();
 
-        List<IShape> shapes = new ObjReader().Read(command.SourceFile);
+        builder
+            .AddSingleton<ObjReader>()
+            .AddSingleton<ImageWriter>()
+            .AddSingleton<RenderStartup>(() => new RenderStartup(command));
 
-        Transform transform = new Transform(Transform.IdentityMatrix).Translate(new Vector3(0.5f, 0, 0));
+        using var container = builder.Build();
 
-        foreach(var shape in shapes)
-        {
-            shape.Transform(transform);
-        }
-
-        var lighting = new List<ILighting>
-        {
-            new DirectionalLight(new Vector3(0, -1, 0)),
-
-            //new DirectionalLight(new Vector3(1, -1, 0), new Pixel(255, 0, 0)),
-            //new DirectionalLight(new Vector3(-1, -1, 0), new Pixel(0, 0, 255))
-        };
-
-        var scene = new Scene(shapes, lighting);
-
-        var renderer = new Renderer(camera, scene);
-        var image = renderer.Render();
-        var writer = new ImageWriter();
-        writer.Write(image, command);
+        container.GetService<RenderStartup>().Run();
 
         return 0;
     }
