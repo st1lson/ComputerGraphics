@@ -35,9 +35,13 @@ public sealed class Container : IContainer
             return singleton;
         }
 
-        var instance = Activator.CreateInstance(type) ?? throw new Exception();
+        var instance = description.Factory?.Invoke() ?? Activator.CreateInstance(type);
+        if (instance == null)
+        {
+            throw new InvalidOperationException($"Could not create instance of type {type}");
+        }
 
-        foreach (var member in type.GetMembers(BindingFlags.Public | BindingFlags.Instance))
+        foreach (var member in type.GetMembers(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
         {
             if (member.GetCustomAttribute(typeof(ServiceAttribute)) == null)
             {
@@ -49,6 +53,13 @@ public sealed class Container : IContainer
                 var propertyType = property.PropertyType;
                 var service = GetService(propertyType);
                 property.SetValue(instance, service);
+            }
+
+            if (member is FieldInfo field)
+            {
+                var fieldType = field.FieldType;
+                var service = GetService(fieldType);
+                field.SetValue(instance, service);
             }
         }
 

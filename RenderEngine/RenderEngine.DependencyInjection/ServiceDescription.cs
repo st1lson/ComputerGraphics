@@ -2,4 +2,4 @@
 
 namespace RenderEngine.DependencyInjection;
 
-internal sealed record ServiceDescription(ServiceLifetime Lifetime, Type Type);
+internal sealed record ServiceDescription(ServiceLifetime Lifetime, Type Type, Func<object>? Factory = null);

@@ -16,11 +16,11 @@ public sealed class ContainerBuilder
 
     private readonly IDictionary<Type, ServiceDescription> _properties;
 
-    public ContainerBuilder AddSingleton<T>()
+    public ContainerBuilder AddSingleton<T>(Func<T>? factory = null) where T : class
     {
         _properties.Add(
             typeof(T),
-            new ServiceDescription(ServiceLifetime.Singleton, typeof(T)));
+            new ServiceDescription(ServiceLifetime.Singleton, typeof(T), factory));
 
         return this;
     }
