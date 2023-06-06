@@ -9,5 +9,7 @@ public interface IShape
 
     Vector3 GetNormal(Vector3 intersectionPoint);
 
+    Vector3 GetInterpolatedNormal(Vector3 intersectionPoint);
+
     void Transform(Transform transform);
 }

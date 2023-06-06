@@ -1,12 +1,17 @@
 ﻿using CommandLine;
 using RenderEngine.Basic;
 using RenderEngine.Cli.CommandLineCommands;
+using RenderEngine.Cli.Configurations;
 using RenderEngine.Cli.IO.Readers;
 using RenderEngine.Cli.IO.Writers;
 using RenderEngine.Core;
+using RenderEngine.Core.Scenes;
+using RenderEngine.DependencyInjection;
 using RenderEngine.ImageConverter.Factories;
 using RenderEngine.Interfaces;
 using RenderEngine.Lightings;
+using RenderEngine.Models;
+using RenderEngine.Optimizers;
 using RenderEngine.Transformer;
 
 namespace RenderEngine.Cli;
@@ -27,54 +32,32 @@ internal class Program
 
     private static int Render(RenderCommand command)
     {
-        Camera camera = new Camera(
-            new Vector3(0, 1, 0),
-            new Vector3(0, -1, 0),
-            200,
-            200,
-            1,
-            30
-        );
+        var builder = new ContainerBuilder();
 
-        List<IShape> shapes = new ObjReader().Read(command.SourceFile);
+        builder
+            .AddSingleton<ObjReader>()
+            .AddSingleton<SceneFactory>()
+            .AddSingleton<ImageWriter>()
+            .AddSingleton<RenderStartup>(() => new RenderStartup(command));
 
-        Transform transform = new Transform(Transform.IdentityMatrix).Translate(new Vector3(0.5f, 0, 0));
+        using var container = builder.Build();
 
-        foreach(var shape in shapes)
-        {
-            shape.Transform(transform);
-        }
-
-        var lighting = new List<ILighting>
-        {
-            new DirectionalLight(new Vector3(0, -1, 0)),
-
-            //new DirectionalLight(new Vector3(1, -1, 0), new Pixel(255, 0, 0)),
-            //new DirectionalLight(new Vector3(-1, -1, 0), new Pixel(0, 0, 255))
-        };
-
-        var scene = new Scene(shapes, lighting);
-
-        var renderer = new Renderer(camera, scene);
-        var image = renderer.Render();
-        var writer = new ImageWriter();
-        writer.Write(image, command);
+        container.GetService<RenderStartup>().Run();
 
         return 0;
     }
 
     private static int Convert(ConvertCommand command)
     {
-        var pluginFactory = new PluginFactory();
+        var builder = new ContainerBuilder();
 
-        using var stream = File.Open(command.SourceFile, FileMode.Open);
-        var reader = pluginFactory.GetImageReader(stream);
+        builder
+            .AddSingleton<PluginFactory>(() => new PluginFactory())
+            .AddSingleton<ConverterStartup>(() => new ConverterStartup(command));
 
-        var bitmap = reader.Read(stream);
+        using var container = builder.Build();
 
-        var writer = pluginFactory.GetImageWriter(command.OutputFormat);
-
-        writer.Write(bitmap, command.OutputFile);
+        container.GetService<ConverterStartup>().Run();
 
         return 0;
     }

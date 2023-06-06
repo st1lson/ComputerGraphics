@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "RenderEngine": {
+      "commandName": "Project",
+      "commandLineArgs": "render -s C:\\Users\\decel\\Downloads\\cow.obj -d D:\\cowPngPng.png"
+    }
+  }
+}

@@ -44,7 +44,12 @@ public class Sphere : IShape
 
     public Vector3 GetNormal(Vector3 intersectionPoint)
     {
-        return intersectionPoint - Orig;
+        return (intersectionPoint - Orig).Normalize();
+    }
+
+    public Vector3 GetInterpolatedNormal(Vector3 intersectionPoint)
+    {
+        return (intersectionPoint - Orig).Normalize();
     }
 
     public void Transform(Transform transform)

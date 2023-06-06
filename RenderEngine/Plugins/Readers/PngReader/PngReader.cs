@@ -15,6 +15,6 @@ public class PngReader : IImageReader
 
     public bool Validate(Stream stream)
     {
-        throw new NotImplementedException();
+        return false;
     }
 }
