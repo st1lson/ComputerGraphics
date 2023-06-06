@@ -10,6 +10,7 @@ public class Renderer : IRenderer
     public Camera Camera { get; init; }
 
     public Scene Scene { get; init; }
+
     public IOptimizer Optimizer { get; init; }
 
     public Renderer(Camera camera, Scene scene, IOptimizer optimizer)

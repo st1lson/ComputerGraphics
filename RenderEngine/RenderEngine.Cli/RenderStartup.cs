@@ -9,6 +9,7 @@ using RenderEngine.DependencyInjection;
 using RenderEngine.Interfaces;
 using RenderEngine.Lightings;
 using RenderEngine.Transformer;
+using RenderEngine.Trees;
 
 namespace RenderEngine.Cli;
 
@@ -34,10 +35,29 @@ internal sealed class RenderStartup : IService
     {
         (Camera camera, Scene scene) = _sceneFactory.CreateScene(_command, _objReader);
 
-        Renderer _renderer = new Renderer(camera, scene);
+        List<IOptimizer> optimizers = CreateOptimizers(_command.Mode);
+        foreach (var optimizer in optimizers)
+        {
+            optimizer.Build(scene.Shapes);
 
-        var image = _renderer.Render();
+            Renderer _renderer = new Renderer(camera, scene, optimizer);
 
-        _imageWriter.Write(image, _command);
+            var image = _renderer.Render();
+
+            _imageWriter.Write(image, _command);
+
+            Console.WriteLine(optimizer.GetType());
+        }
+    }
+
+    private List<IOptimizer> CreateOptimizers(string mode)
+    {
+        return mode switch
+        {
+            "default" => new List<IOptimizer>() { new OctTree(new BoundingBox(new Vector3(-30, -30, -30), new Vector3(30, 30, 30))) },
+            "octree" => new List<IOptimizer>() { new OctTree(new BoundingBox(new Vector3(-30, -30, -30), new Vector3(30, 30, 30))) },
+            "octree-compare" => CreateOptimizers("default").Concat(CreateOptimizers("octree")).ToList(),
+            _ => throw new ArgumentOutOfRangeException()
+        };
     }
 }

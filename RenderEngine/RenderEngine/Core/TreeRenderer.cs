@@ -1,4 +1,5 @@
 ﻿using RenderEngine.Basic;
+using RenderEngine.Core.Scenes;
 using RenderEngine.Interfaces;
 using RenderEngine.Models;
 using RenderEngine.Shapes;
@@ -16,6 +17,7 @@ namespace RenderEngine.Core
         public Camera Camera { get; init; }
 
         public Scene Scene { get; init; }
+
         public IOptimizer Optimizer { get; init; }
 
         public TreeRenderer(Camera camera, Scene scene, IOptimizer optimizer)
