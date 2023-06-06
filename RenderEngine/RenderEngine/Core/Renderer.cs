@@ -1,6 +1,7 @@
 ﻿using RenderEngine.Basic;
 using RenderEngine.Interfaces;
 using RenderEngine.Models;
+using RenderEngine.Core.Scenes;
 
 namespace RenderEngine.Core;
 

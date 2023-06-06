@@ -10,8 +10,8 @@ public sealed record CameraConfiguration
         Dir = new Vector3(0, -1, 0),
         PixelWidth = 200,
         PixelHeight = 200,
-        VerticalFOV = 1,
-        FocalLength = 30
+        VerticalFOV = 30,
+        FocalLength = 1
     };
 
     public Vector3 Orig { get; init; }

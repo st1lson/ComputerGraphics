@@ -1,9 +1,11 @@
 ﻿using CommandLine;
 using RenderEngine.Basic;
 using RenderEngine.Cli.CommandLineCommands;
+using RenderEngine.Cli.Configurations;
 using RenderEngine.Cli.IO.Readers;
 using RenderEngine.Cli.IO.Writers;
 using RenderEngine.Core;
+using RenderEngine.Core.Scenes;
 using RenderEngine.DependencyInjection;
 using RenderEngine.ImageConverter.Factories;
 using RenderEngine.Interfaces;
@@ -32,6 +34,7 @@ internal class Program
 
         builder
             .AddSingleton<ObjReader>()
+            .AddSingleton<SceneFactory>()
             .AddSingleton<ImageWriter>()
             .AddSingleton<RenderStartup>(() => new RenderStartup(command));
 
@@ -44,16 +47,15 @@ internal class Program
 
     private static int Convert(ConvertCommand command)
     {
-        var pluginFactory = new PluginFactory();
+        var builder = new ContainerBuilder();
 
-        using var stream = File.Open(command.SourceFile, FileMode.Open);
-        var reader = pluginFactory.GetImageReader(stream);
+        builder
+            .AddSingleton<PluginFactory>()
+            .AddSingleton<ConverterApp>(() => new ConverterApp(command));
 
-        var bitmap = reader.Read(stream);
+        using var container = builder.Build();
 
-        var writer = pluginFactory.GetImageWriter(command.OutputFormat);
-
-        writer.Write(bitmap, command.OutputFile);
+        container.GetService<ConverterApp>().Run();
 
         return 0;
     }
