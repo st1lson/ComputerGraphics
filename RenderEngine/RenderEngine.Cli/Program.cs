@@ -32,8 +32,8 @@ internal class Program
         Camera camera = new Camera(
             new Vector3(0, 1, 0),
             new Vector3(0, -1, 0),
-            200,
-            200,
+            1920,
+            1080,
             1,
             30
         );

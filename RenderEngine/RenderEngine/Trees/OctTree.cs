@@ -20,9 +20,10 @@ namespace RenderEngine.Trees
 
         private OctTree(BoundingBox max_region, List<Triangle> triangle)
         {
-            _triangles = triangle;
+            //_triangles = triangle;
             _region = max_region;
             _children = new OctTree[8];
+            Build(triangle);
         }
 
         public void Build(IReadOnlyList<IShape> Triangles)
