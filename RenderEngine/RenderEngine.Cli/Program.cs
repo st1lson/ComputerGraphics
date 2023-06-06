@@ -10,6 +10,8 @@ using RenderEngine.DependencyInjection;
 using RenderEngine.ImageConverter.Factories;
 using RenderEngine.Interfaces;
 using RenderEngine.Lightings;
+using RenderEngine.Models;
+using RenderEngine.Trees;
 using RenderEngine.Transformer;
 
 namespace RenderEngine.Cli;
