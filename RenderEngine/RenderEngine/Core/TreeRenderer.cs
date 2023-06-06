@@ -27,10 +27,6 @@ namespace RenderEngine.Core
 
         public Bitmap Render()
         {
-            if (Scene.Shapes.All(x => x is Triangle))
-            {
-                throw new Exception("Shapes are not triangles");
-            }
 
             //OctTree tree = new(new BoundingBox(new Vector3(-30, -30, -30), new Vector3(30, 30, 30)), Scene.Shapes.Select(x => (Triangle)x));
 

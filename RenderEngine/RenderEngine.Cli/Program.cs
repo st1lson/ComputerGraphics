@@ -61,6 +61,7 @@ internal class Program
 
         var scene = new Scene(shapes, lighting);
         IOptimizer optimizer = new OctTree(new BoundingBox(new Vector3(-30, -30, -30), new Vector3(30, 30, 30)));
+        optimizer.Build(scene.Shapes);
         var renderer = new TreeRenderer(camera, scene, optimizer);
         var image = renderer.Render();
         var writer = new ImageWriter();

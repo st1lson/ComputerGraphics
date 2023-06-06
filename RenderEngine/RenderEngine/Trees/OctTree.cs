@@ -10,7 +10,7 @@ namespace RenderEngine.Trees
         private const float MinSize = .0005f;
         private readonly BoundingBox _region;
         private readonly OctTree[] _children;
-        private List<Triangle> _triangle;
+        private List<Triangle> _triangles;
 
         public OctTree(BoundingBox max_region)
         {
@@ -20,21 +20,21 @@ namespace RenderEngine.Trees
 
         private OctTree(BoundingBox max_region, List<Triangle> triangle)
         {
-            _triangle = triangle;
+            _triangles = triangle;
             _region = max_region;
             _children = new OctTree[8];
         }
 
-        public void Build(List<IShape> Triangle)
+        public void Build(IReadOnlyList<IShape> Triangles)
         {
-            if(Triangle.Any(x=>x is Triangle))
+            if (Triangles.Any(x=>x is not Triangle))
             {
                 throw new Exception("Triangles not found");
             }
 
-            _triangle = Triangle.Cast<Triangle>().ToList();
+            _triangles = new(Triangles.Cast<Triangle>().ToList());
 
-            if (_triangle.Count <= 10)
+            if (_triangles.Count <= 10)
             {
                 return;
             }
@@ -73,7 +73,7 @@ namespace RenderEngine.Trees
 
             List<Triangle> nextElements = new();
 
-            foreach (Triangle triangle in _triangle)
+            foreach (Triangle triangle in _triangles)
             {
                 for (int i = 0; i < 8; i++)
                 {
@@ -84,7 +84,7 @@ namespace RenderEngine.Trees
                 }
             }
 
-            _triangle.Clear();
+            _triangles.Clear();
 
             for (int i = 0; i < 8; i++)
             {
@@ -107,7 +107,7 @@ namespace RenderEngine.Trees
                 }
             }
 
-            if (all_childrenNull && _triangle.Count == 0)
+            if (all_childrenNull && _triangles.Count == 0)
             {
                 return (null, null);
             }
@@ -115,7 +115,7 @@ namespace RenderEngine.Trees
             Vector3? minIntersectedPoint = null;
             float minSquareDistance = float.MaxValue;
             IShape? saveShape = null;
-            foreach (Triangle triangle in _triangle)
+            foreach (Triangle triangle in _triangles)
             {
                 Vector3? intersectedPoint = triangle.Intersects(ray);
 
