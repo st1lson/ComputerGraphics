@@ -3,7 +3,7 @@ using RenderEngine.Core;
 using RenderEngine.Interfaces;
 using RenderEngine.Shapes;
 
-namespace RenderEngine.Trees
+namespace RenderEngine.Optimizers
 {
     public class OctTree : IOptimizer
     {

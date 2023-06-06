@@ -11,7 +11,7 @@ using RenderEngine.ImageConverter.Factories;
 using RenderEngine.Interfaces;
 using RenderEngine.Lightings;
 using RenderEngine.Models;
-using RenderEngine.Trees;
+using RenderEngine.Optimizers;
 using RenderEngine.Transformer;
 
 namespace RenderEngine.Cli;
@@ -53,11 +53,11 @@ internal class Program
 
         builder
             .AddSingleton<PluginFactory>()
-            .AddSingleton<ConverterApp>(() => new ConverterApp(command));
+            .AddSingleton<ConverterStartup>(() => new ConverterStartup(command));
 
         using var container = builder.Build();
 
-        container.GetService<ConverterApp>().Run();
+        container.GetService<ConverterStartup>().Run();
 
         return 0;
     }

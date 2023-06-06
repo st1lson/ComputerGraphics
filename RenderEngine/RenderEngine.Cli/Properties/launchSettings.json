@@ -2,7 +2,7 @@
   "profiles": {
     "RenderEngine.Cli": {
       "commandName": "Project",
-      "commandLineArgs": "render --scene=cow-scene -d D:\\cowCheckpng.png"
+      "commandLineArgs": "render --scene=cow-scene -m octree-compare -d D:\\cowCheckpng.png"
     }
   }
 }

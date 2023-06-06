@@ -9,7 +9,8 @@ using RenderEngine.DependencyInjection;
 using RenderEngine.Interfaces;
 using RenderEngine.Lightings;
 using RenderEngine.Transformer;
-using RenderEngine.Trees;
+using RenderEngine.Optimizers;
+using System.Diagnostics;
 
 namespace RenderEngine.Cli;
 
@@ -38,6 +39,7 @@ internal sealed class RenderStartup : IService
         List<IOptimizer> optimizers = CreateOptimizers(_command.Mode);
         foreach (var optimizer in optimizers)
         {
+            Stopwatch stopwatch = Stopwatch.StartNew();
             optimizer.Build(scene.Shapes);
 
             Renderer _renderer = new Renderer(camera, scene, optimizer);
@@ -46,7 +48,9 @@ internal sealed class RenderStartup : IService
 
             _imageWriter.Write(image, _command);
 
-            Console.WriteLine(optimizer.GetType());
+            stopwatch.Stop();
+
+            Console.WriteLine(optimizer.GetType() + " - " + stopwatch.ElapsedMilliseconds + "ms");
         }
     }
 
@@ -54,7 +58,7 @@ internal sealed class RenderStartup : IService
     {
         return mode switch
         {
-            "default" => new List<IOptimizer>() { new OctTree(new BoundingBox(new Vector3(-30, -30, -30), new Vector3(30, 30, 30))) },
+            "default" => new List<IOptimizer>() { new DefaultOptimizer() },
             "octree" => new List<IOptimizer>() { new OctTree(new BoundingBox(new Vector3(-30, -30, -30), new Vector3(30, 30, 30))) },
             "octree-compare" => CreateOptimizers("default").Concat(CreateOptimizers("octree")).ToList(),
             _ => throw new ArgumentOutOfRangeException()

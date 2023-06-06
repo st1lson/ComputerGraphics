@@ -1,6 +1,6 @@
 ﻿using RenderEngine.Basic;
 
-namespace RenderEngine.Trees
+namespace RenderEngine.Optimizers
 {
     public class BoundingBox
     {

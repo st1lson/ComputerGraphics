@@ -9,14 +9,14 @@ using System.Threading.Tasks;
 
 namespace RenderEngine.Cli
 {
-    public class ConverterApp
+    public class ConverterStartup
     {
         [Service]
         private readonly PluginFactory _pluginFactory = null!;
 
         private readonly ConvertCommand _command = null!;
 
-        public ConverterApp(ConvertCommand command) 
+        public ConverterStartup(ConvertCommand command) 
         {
             _command = command;
         }
