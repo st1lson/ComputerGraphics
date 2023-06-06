@@ -1,5 +1,6 @@
 ﻿using RenderEngine.Basic;
 using RenderEngine.Cli.CommandLineCommands;
+using RenderEngine.Cli.Configurations;
 using RenderEngine.Cli.IO.Readers;
 using RenderEngine.Cli.IO.Writers;
 using RenderEngine.Core;
@@ -18,16 +19,23 @@ internal sealed class RenderStartup : IService
     [Service]
     private readonly ImageWriter _imageWriter = null!;
 
-    private readonly Renderer _renderer;
+    [Service]
+    private readonly SceneFactory _sceneFactory = null!;
 
-    public RenderStartup(RenderCommand command, Renderer renderer)
+    [Service]
+    private readonly ObjReader _objReader = null!;
+
+    public RenderStartup(RenderCommand command)
     {
         _command = command;
-        _renderer = renderer;
     }
 
     public void Run()
     {
+        (Camera camera, Scene scene) = _sceneFactory.CreateScene(_command, _objReader);
+
+        Renderer _renderer = new Renderer(camera, scene);
+
         var image = _renderer.Render();
 
         _imageWriter.Write(image, _command);

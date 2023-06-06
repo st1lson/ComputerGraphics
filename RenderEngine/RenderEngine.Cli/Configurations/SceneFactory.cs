@@ -12,24 +12,17 @@ namespace RenderEngine.Cli.Configurations
 {
     public class SceneFactory
     {
-        private readonly IMeshReader objReader;
-
-        public SceneFactory(IMeshReader meshReader)
-        {
-            objReader = meshReader;
-        }
-
-        public (Camera camera, Scene scene) CreateScene(RenderCommand command) 
+        public (Camera camera, Scene scene) CreateScene(RenderCommand command, IMeshReader objReader) 
         {
             return command.Scene switch
             {
-                "default" => Default(command.SourceFile),
-                "cow-scene" => CowScene(),
+                "default" => Default(objReader, command.SourceFile),
+                "cow-scene" => CowScene(objReader),
                 _ => throw new ArgumentOutOfRangeException()
             };
         }
 
-        private (Camera camera, Scene scene) Default(string objFileName)
+        private (Camera camera, Scene scene) Default(IMeshReader objReader, string objFileName)
         {
             CameraConfiguration cameraConfig = CameraConfiguration.Default;
             Camera camera = new Camera(cameraConfig);
@@ -40,7 +33,7 @@ namespace RenderEngine.Cli.Configurations
             return (camera, scene);
         }
 
-        private (Camera camera, Scene scene) CowScene()
+        private (Camera camera, Scene scene) CowScene(IMeshReader objReader)
         {
             CameraConfiguration cameraConfig = CameraConfiguration.Default with
             {

@@ -32,13 +32,11 @@ internal class Program
     {
         var builder = new ContainerBuilder();
 
-        (Camera camera, Scene scene) = new SceneFactory(new ObjReader()).CreateScene(command);
-
-        Renderer renderer = new Renderer(camera, scene);
-
         builder
+            .AddSingleton<ObjReader>()
+            .AddSingleton<SceneFactory>()
             .AddSingleton<ImageWriter>()
-            .AddSingleton<RenderStartup>(() => new RenderStartup(command, renderer));
+            .AddSingleton<RenderStartup>(() => new RenderStartup(command));
 
         using var container = builder.Build();
 
