@@ -4,16 +4,18 @@ using RenderEngine.Models;
 
 namespace RenderEngine.Core;
 
-public class Renderer
+public class Renderer : IRenderer
 {
     public Camera Camera { get; init; }
 
     public Scene Scene { get; init; }
+    public IOptimizer Optimizer { get; init; }
 
-    public Renderer(Camera camera, Scene scene)
+    public Renderer(Camera camera, Scene scene, IOptimizer optimizer)
     {
         Camera = camera;
         Scene = scene;
+        Optimizer = optimizer;
     }
 
     public Bitmap Render()

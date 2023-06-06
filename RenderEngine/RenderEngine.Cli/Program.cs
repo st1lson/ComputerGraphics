@@ -8,6 +8,7 @@ using RenderEngine.ImageConverter.Factories;
 using RenderEngine.Interfaces;
 using RenderEngine.Lightings;
 using RenderEngine.Models;
+using RenderEngine.Trees;
 using RenderEngine.Transformer;
 
 namespace RenderEngine.Cli;
@@ -59,8 +60,8 @@ internal class Program
         };
 
         var scene = new Scene(shapes, lighting);
-
-        var renderer = new Renderer(camera, scene);
+        IOptimizer optimizer = new OctTree(new BoundingBox(new Vector3(-30, -30, -30), new Vector3(30, 30, 30)));
+        var renderer = new TreeRenderer(camera, scene, optimizer);
         var image = renderer.Render();
         var writer = new ImageWriter();
         writer.Write(image, command);
