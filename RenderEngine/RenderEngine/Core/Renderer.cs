@@ -63,7 +63,7 @@ namespace RenderEngine.Core
 
                     foreach (var lightning in Scene.Lighting)
                     {
-                        bitmap[(int)i, j] += lightning.GetLight(intersectedShape!, Scene.Shapes, intersectedPoint.Value, Camera.Orig);
+                        bitmap[(int)i, j] += lightning.GetLight(intersectedShape!, Scene.Shapes, intersectedPoint.Value, Camera.Orig, Optimizer);
                     }
                 }
             });

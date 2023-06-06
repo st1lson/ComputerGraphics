@@ -17,6 +17,14 @@ internal sealed class ImageWriter : IWriter
 
         var writer = factory.GetImageWriter(command.OutputFormat);
 
-        writer.Write(bitmap, command.OutputFile);
+        string outputFile = command.OutputFile;
+        int counter = 0;
+        while (File.Exists(outputFile))
+        {
+            counter++;
+            outputFile = $"{Path.GetDirectoryName(command.OutputFile)}{Path.GetFileNameWithoutExtension(command.OutputFile)}{counter}{command.OutputFormat}";
+        }
+
+        writer.Write(bitmap, outputFile);
     }
 }

@@ -50,7 +50,7 @@ internal sealed class RenderStartup : IService
 
             stopwatch.Stop();
 
-            Console.WriteLine(optimizer.GetType() + " - " + stopwatch.ElapsedMilliseconds + "ms");
+            Console.WriteLine($"{optimizer.GetType().Name} - {stopwatch.ElapsedMilliseconds} ms");
         }
     }
 

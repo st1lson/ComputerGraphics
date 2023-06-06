@@ -46,7 +46,7 @@ namespace RenderEngine.Lightings
             shininess = shine;
         }
 
-        public Pixel GetLight(IShape shape, IReadOnlyList<IShape> shapes, Vector3 intersectionPoint, Vector3 cameraPos)
+        public Pixel GetLight(IShape shape, IReadOnlyList<IShape> shapes, Vector3 intersectionPoint, Vector3 cameraPos, IOptimizer optimizer)
         {
             Vector3 normal = shape.GetInterpolatedNormal(intersectionPoint).Normalize();
             Vector3 lightDir = (LightPos - intersectionPoint).Normalize();
@@ -60,21 +60,8 @@ namespace RenderEngine.Lightings
             }
 
             Ray rayLight = new Ray(intersectionPoint, lightDir);
-            bool isShadowed = false;
-            foreach (IShape otherShapes in shapes)
-            {
-                if (otherShapes == shape)
-                {
-                    continue;
-                }
 
-                var intersection = otherShapes.Intersects(rayLight);
-                if (intersection != null)
-                {
-                    isShadowed = true;
-                    break;
-                }
-            }
+            (Vector3? shadowedPoint, _) = optimizer.GetIntersection(rayLight, intersectionPoint);
 
             float diffuseFactor = Math.Max(Vector3.Dot(normal, lightDir), 0);
             
@@ -84,7 +71,7 @@ namespace RenderEngine.Lightings
             float specularFactor = (float)Math.Pow(Math.Max(Vector3.Dot(reflectionVector, viewVector), 0), shininess);
             Vector3 specularComponent = specularCoef * specularFactor;
 
-            Vector3 finalColor = isShadowed ? Vector3.Zero : (ambientCoef + diffuseComponent + specularComponent) * Strength;
+            Vector3 finalColor = shadowedPoint != null ? Vector3.Zero : (ambientCoef + diffuseComponent + specularComponent) * Strength;
             finalColor = Vector3.Clamp(finalColor, Vector3.Zero, new Vector3(1));
 
             return Color * finalColor;

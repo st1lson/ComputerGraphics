@@ -52,7 +52,7 @@ internal class Program
         var builder = new ContainerBuilder();
 
         builder
-            .AddSingleton<PluginFactory>()
+            .AddSingleton<PluginFactory>(() => new PluginFactory())
             .AddSingleton<ConverterStartup>(() => new ConverterStartup(command));
 
         using var container = builder.Build();

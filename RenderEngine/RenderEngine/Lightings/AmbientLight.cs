@@ -24,7 +24,7 @@ namespace RenderEngine.Lightings
             Strength = stength;
         }
 
-        public Pixel GetLight(IShape shape, IReadOnlyList<IShape> shapes, Vector3 intersectionPoint, Vector3 cameraPos)
+        public Pixel GetLight(IShape shape, IReadOnlyList<IShape> shapes, Vector3 intersectionPoint, Vector3 cameraPos, IOptimizer optimizer)
         {
             var coefficient = 1;
 

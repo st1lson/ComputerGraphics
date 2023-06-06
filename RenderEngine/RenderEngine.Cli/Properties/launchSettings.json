@@ -2,7 +2,7 @@
   "profiles": {
     "RenderEngine.Cli": {
       "commandName": "Project",
-      "commandLineArgs": "render --scene=cow-scene -m octree-compare -d D:\\cowCheckpng.png"
+      "commandLineArgs": "convert -s D:\\\\bmp.bmp -d D:\\bmp.png"
     }
   }
 }

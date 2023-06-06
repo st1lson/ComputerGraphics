@@ -27,7 +27,7 @@ public class DirectionalLight : ILighting
         Strength = stength;
     }
 
-    public Pixel GetLight(IShape shape, IReadOnlyList<IShape> shapes, Vector3 intersectionPoint, Vector3 cameraPos)
+    public Pixel GetLight(IShape shape, IReadOnlyList<IShape> shapes, Vector3 intersectionPoint, Vector3 cameraPos, IOptimizer optimizer)
     {
         Vector3 normal = shape.GetInterpolatedNormal(intersectionPoint);
         float cosA = Vector3.Dot(normal, LightDir);
@@ -39,23 +39,10 @@ public class DirectionalLight : ILighting
         }
 
         Ray rayLight = new Ray(intersectionPoint, LightDir);
-        bool isShadowed = false;
-        foreach (IShape otherShapes in shapes)
-        {
-            if (otherShapes == shape) 
-            {
-                continue;
-            }
 
-            var intersection = otherShapes.Intersects(rayLight);
-            if (intersection != null) 
-            {
-                isShadowed = true;
-                break;
-            }
-        }
+        (Vector3? shadowedPoint, _) = optimizer.GetIntersection(rayLight, intersectionPoint);
 
-        var coefficient = isShadowed ? 0 : Math.Max(Vector3.Dot(normal, LightDir), 0);
+        var coefficient = shadowedPoint != null ? 0 : Math.Max(Vector3.Dot(normal, LightDir), 0);
 
         return Color * (new Vector3(coefficient) * Strength);
     }
