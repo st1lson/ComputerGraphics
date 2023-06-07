@@ -1,5 +1,6 @@
 ﻿using RenderEngine.Basic;
 using RenderEngine.Interfaces;
+using RenderEngine.Optimizers;
 using RenderEngine.Transformer;
 
 namespace RenderEngine.Shapes;
@@ -59,5 +60,10 @@ public class Sphere : IShape
 
         Radius = vectorRadius.Abs();
         Orig = Orig.Transform(transform);
+    }
+
+    public bool IsInsideBox(BoundingBox box)
+    {
+        throw new NotImplementedException();
     }
 }

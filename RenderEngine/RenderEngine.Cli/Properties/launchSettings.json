@@ -2,7 +2,7 @@
   "profiles": {
     "RenderEngine.Cli": {
       "commandName": "Project",
-      "commandLineArgs": "convert -s D:\\\\bmp.bmp -d D:\\bmp.png"
+      "commandLineArgs": "render --scene=cow-fullhd -m octree -d D:\\cowCheckpng.png"
     }
   }
 }

@@ -84,9 +84,9 @@ public class PngWriter : IImageWriter
 
             for (int y = 0; y < bitmap.Width; y++)
             {
-                decompressedData[position++] = Convert.ToByte(bitmap[x, y].B);
-                decompressedData[position++] = Convert.ToByte(bitmap[x, y].G);
                 decompressedData[position++] = Convert.ToByte(bitmap[x, y].R);
+                decompressedData[position++] = Convert.ToByte(bitmap[x, y].G);
+                decompressedData[position++] = Convert.ToByte(bitmap[x, y].B);
             }
         }
 
