@@ -1,6 +1,7 @@
 ﻿using RenderEngine.Interfaces;
 using RenderEngine.Basic;
 using RenderEngine.Transformer;
+using RenderEngine.Optimizers;
 
 namespace RenderEngine.Shapes;
 
@@ -70,5 +71,10 @@ public class Disk : IShape
         Radius = vectorRadius.Abs();
         Normal = Normal.TransformAsDirection(transform);
         Orig = Orig.Transform(transform);
+    }
+
+    public bool IsInsideBox(BoundingBox box)
+    {
+        throw new NotImplementedException();
     }
 }
