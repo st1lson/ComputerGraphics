@@ -1,4 +1,5 @@
 ﻿using RenderEngine.Basic;
+using RenderEngine.Configurations;
 
 namespace RenderEngine.Core;
 
@@ -24,5 +25,15 @@ public class Camera
         PixelHeight = pixelHeight;
         FocalLength = focalLength;
         VerticalFOV = verticalFOV;
+    }
+
+    public Camera(CameraConfiguration configuration)
+    {
+        Orig = configuration.Orig;
+        Dir = configuration.Dir;
+        PixelWidth = configuration.PixelWidth;
+        PixelHeight = configuration.PixelHeight;
+        FocalLength = configuration.FocalLength;
+        VerticalFOV = configuration.VerticalFOV;
     }
 }

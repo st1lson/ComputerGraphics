@@ -1,6 +1,7 @@
 ﻿using RenderEngine.Interfaces;
 using RenderEngine.Basic;
 using RenderEngine.Transformer;
+using RenderEngine.Optimizers;
 
 namespace RenderEngine.Shapes;
 
@@ -16,7 +17,7 @@ public class Disk : IShape
     {
         Orig = orig;
         Radius = radius;
-        Normal = normal;
+        Normal = normal.Normalize();
     }
 
     public Vector3? Intersects(Ray ray)
@@ -55,6 +56,11 @@ public class Disk : IShape
         return Normal;
     }
 
+    public Vector3 GetInterpolatedNormal(Vector3 intersectionPoint)
+    {
+        return Normal;
+    }
+
     public void Transform(Transform transform)
     {
         float D = -(Normal.X * Orig.X + Normal.Y * Orig.Y + Normal.Z * Orig.Z);
@@ -65,5 +71,10 @@ public class Disk : IShape
         Radius = vectorRadius.Abs();
         Normal = Normal.TransformAsDirection(transform);
         Orig = Orig.Transform(transform);
+    }
+
+    public bool IsInsideBox(BoundingBox box)
+    {
+        throw new NotImplementedException();
     }
 }

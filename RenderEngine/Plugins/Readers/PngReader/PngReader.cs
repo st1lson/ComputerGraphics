@@ -1,5 +1,5 @@
-﻿using RenderEngine.ImageConverter.Interfaces;
-using RenderEngine.ImageConverter.Models.Png;
+﻿using PngCommon;
+using RenderEngine.ImageConverter.Interfaces;
 using RenderEngine.Models;
 
 namespace PngReader;
@@ -8,8 +8,13 @@ public class PngReader : IImageReader
 {
     public PngHeader Header => default;
 
-    public Bitmap Read(string filePath)
+    public Bitmap Read(Stream source)
     {
         throw new NotImplementedException();
+    }
+
+    public bool Validate(Stream stream)
+    {
+        return false;
     }
 }

@@ -1,15 +1,18 @@
 ﻿using RenderEngine.ImageConverter.Interfaces;
-using RenderEngine.ImageConverter.Models.Png;
 using System.Text;
 using ICSharpCode.SharpZipLib.Zip.Compression.Streams;
 using RenderEngine.Models;
+using PngCommon;
 
 namespace PngWriter;
 
 public class PngWriter : IImageWriter
 {
-    const string NameOfChunkIhdr = "IHDR";
-    const string NameOfChunkIdat = "IDAT";
+    public string Format => ".png";
+
+    private const string NameOfChunkIhdr = "IHDR";
+    private const string NameOfChunkIdat = "IDAT";
+
     public void Write(Bitmap bitmap, string path)
     {
         IHDRData ihdrData = new()
@@ -34,7 +37,7 @@ public class PngWriter : IImageWriter
                 CRC = GetCRC32(Encoding.ASCII.GetBytes(NameOfChunkIhdr)
                     .Concat(ihdrData.Width)
                     .Concat(ihdrData.Height)
-                    .Concat(new byte[] {ihdrData.BitDepth, ihdrData.ColorType, ihdrData.CompressionMethod, ihdrData.FilterMethod, ihdrData.InterlaceMethod}))
+                    .Concat(new byte[] { ihdrData.BitDepth, ihdrData.ColorType, ihdrData.CompressionMethod, ihdrData.FilterMethod, ihdrData.InterlaceMethod }))
 
             },
             IDAT = CreateChunkIdatFromBitmap(bitmap),
@@ -78,7 +81,7 @@ public class PngWriter : IImageWriter
         {
             decompressedData[position] = 0;
             position++;
-                
+
             for (int y = 0; y < bitmap.Width; y++)
             {
                 decompressedData[position++] = Convert.ToByte(bitmap[x, y].R);

@@ -1,6 +1,6 @@
 ﻿using RenderEngine.Interfaces;
 
-namespace RenderEngine.Cli.IO.Readers;
+namespace RenderEngine.IO.Readers;
 
 public interface IMeshReader
 {

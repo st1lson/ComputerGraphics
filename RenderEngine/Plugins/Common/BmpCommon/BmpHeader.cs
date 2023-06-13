@@ -1,4 +1,4 @@
-﻿namespace RenderEngine.ImageConverter.Models.Bmp;
+﻿namespace BmpCommon;
 
 public struct BmpHeader
 {

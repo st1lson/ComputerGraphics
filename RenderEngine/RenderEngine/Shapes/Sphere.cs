@@ -1,5 +1,6 @@
 ﻿using RenderEngine.Basic;
 using RenderEngine.Interfaces;
+using RenderEngine.Optimizers;
 using RenderEngine.Transformer;
 
 namespace RenderEngine.Shapes;
@@ -44,7 +45,12 @@ public class Sphere : IShape
 
     public Vector3 GetNormal(Vector3 intersectionPoint)
     {
-        return intersectionPoint - Orig;
+        return (intersectionPoint - Orig).Normalize();
+    }
+
+    public Vector3 GetInterpolatedNormal(Vector3 intersectionPoint)
+    {
+        return (intersectionPoint - Orig).Normalize();
     }
 
     public void Transform(Transform transform)
@@ -54,5 +60,10 @@ public class Sphere : IShape
 
         Radius = vectorRadius.Abs();
         Orig = Orig.Transform(transform);
+    }
+
+    public bool IsInsideBox(BoundingBox box)
+    {
+        throw new NotImplementedException();
     }
 }

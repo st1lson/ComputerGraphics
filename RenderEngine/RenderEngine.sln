@@ -36,6 +36,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PngReader", "Plugins\Reader
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PngWriter", "Plugins\Writers\PngWriter\PngWriter.csproj", "{4C5623BD-575D-40FA-A91A-B6363C554D03}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RenderEngine.DependencyInjection", "RenderEngine.DependencyInjection\RenderEngine.DependencyInjection.csproj", "{BB07587F-6D8A-49A7-9180-7C61B63FD8BB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -74,6 +76,10 @@ Global
 		{4C5623BD-575D-40FA-A91A-B6363C554D03}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C5623BD-575D-40FA-A91A-B6363C554D03}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C5623BD-575D-40FA-A91A-B6363C554D03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB07587F-6D8A-49A7-9180-7C61B63FD8BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB07587F-6D8A-49A7-9180-7C61B63FD8BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB07587F-6D8A-49A7-9180-7C61B63FD8BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB07587F-6D8A-49A7-9180-7C61B63FD8BB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
